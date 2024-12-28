@@ -1,0 +1,10 @@
+.logo{
+    font-size:20px;
+    font-weight:600;
+    @apply flex;
+    @apply flex-row;
+    @apply items-center;
+    span{
+        margin-left: 5px;
+    }
+}

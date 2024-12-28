@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.footer-t-m{
+    @apply mt-1 mb-1;
+}
+.footer-m{
+    @apply mt-0.5 mb-0.5;
+}
+.textarea{
+    resize: none;
+}
+.scroll-y{
+    @apply scroll;
+    @apply overflow-y-auto
+}
+.scroll{
+    .no-scrollbar {
+        overflow: hidden;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+      
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;  /* Chrome, Safari, and Edge (Chromium) */
+      }
+}
+a{
+    text-decoration: none !important;
+}
+.title{
+   @apply bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent;
+}
