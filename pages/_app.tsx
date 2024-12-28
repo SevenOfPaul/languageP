@@ -9,3 +9,15 @@ export default function App({ Component, pageProps }) {
   </Head>
     <Component {...pageProps}/></>
   }
+//   window.append_to_output = function(text, is_error) {
+//     const resultElement = document.getElementById('result');
+//     if (resultElement) {
+//         const span = document.createElement('span');
+//         span.textContent = text;
+//         if (is_error) {
+//             span.style.color = 'red';
+//         }
+//         resultElement.appendChild(span);
+//         resultElement.appendChild(document.createElement('br'));
+//     }
+// };
