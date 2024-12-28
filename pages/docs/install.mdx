@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FileTree } from 'nextra/components'
 
 ## 安装
 ### 线上尝试 鹏语言
@@ -11,7 +12,24 @@ import Link from "next/link";
 p.exe excample.p
 ``` 
 + 为什么要添加到系统变量呢，其实是因为文件管理的方式是如下所示。
-
+<FileTree>
+  <FileTree.Folder name="C:" defaultOpen>
+    <FileTree.Folder name="文件夹1" defaultOpen>
+    <FileTree.File name="p.exe">
+    </FileTree.File>
+    </FileTree.Folder>
+     <FileTree.Folder name="文件夹2" defaultOpen>
+       <FileTree.File name="excample.p">
+    </FileTree.File>
+    </FileTree.Folder>
+  </FileTree.Folder>
+</FileTree>
++ 在这种情况下你是没有办法在文件夹1 找到文件夹2下的文件的。
++ 好在系统开发者们给我了我们解决办法。在命令行的状态下，会先到系统变量下寻找，找不到之后在在本级文件夹寻找。
++ 也就是说如果你把**八宝粥行动**加入到了系统变量。那么你就可以通过如下代码进入八宝粥了。
+```cmd
+八宝粥行动.exe
+```
 ### 本章中英对照表
 | 英文      | 中文 |
 | ----------- | ----------- |
