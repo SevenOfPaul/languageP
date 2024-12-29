@@ -1,8 +1,14 @@
 import React from 'react'
 import { Image } from 'nextra/components'
-import { DocsThemeConfig } from 'nextra-theme-docs'
+import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import styles from "./styles/theme.module.scss"
 const config: DocsThemeConfig = {
+
+  head:()=>{
+    const { frontMatter } = useConfig();
+  return <>
+        <meta property="og:title" content={frontMatter.title || '鹏语言'} /></>
+  },
   logo:
    <div className={styles.logo}>
     <Image alt='logo' className='w-8 h-8' src={"/P.png"}></Image>
