@@ -1,4 +1,5 @@
-import { Image } from 'nextra/components'
+import { Image,Callout } from 'nextra/components'
+import Link from "next/link"
 
 ## 变量声明
 ### 试试你的hello world![^ps1]
@@ -9,11 +10,68 @@ print "hello world!";
 <br/>
 <Image src="/hello.png" className='w-full'/>
 + ~~恭喜，你学会了鹏语言，去放飞自我吧。~~，万里长征可以迈第二步了。
-### 为什么需要变量声明
++ 去打印五个白色的`hello world!`。
+```ts
+//伪代码
+print "hello world!";
+print "hello world!";
+print "hello world!";
+print "hello world!";
+print "hello world!";
+//快来夸夸我！
+```
++ 去打印十个七彩斑斓`hello world!`。
++ (╯°Д°)╯︵ ┻━┻ 老子不干了。
++ 那如果有了变量呢
+```ts
+//伪代码
+诏 字符="hello world!"
+print 字符;
+print 字符;
+print 字符;
+print 字符;
+print 字符;
+```
+<br/>
+<div class="chat chat-start">
+  <div class="chat-bubble">
+  (↼_↼)有区别？
+  </div>
+</div>
+<div class="chat chat-end">
+  <div class="chat-bubble">别着急，要组合起来用的</div>
+</div>
 
+```ts
+//伪代码
+诏 字符="hello world!"
+loop{
+    print 字符;
+}
+//这样就可以一直打印下去了
+```
+### 那我该怎么进行变量声明呢
++ 很简单
+```ts
+let str="hello world!"
+//或
+诏 字符="hello world!"
+```
++ 之后我们使用str或字符就是`"hello world!"`了。
+
+<Callout type="info" >
+  想要了解变量声明在计算机底层发生过程的朋友可以看下去，萌新可以直接进入<Link href="./type" className="title">下一章</Link>了。
+</Callout>
+### 啥是变量声明
+
++ 实际上变量就是我们在计算机内部开辟一个空间，把`hello world!`存进去。
+### 为什么需要变量声明
++ 那我们为什么需要用到`变量`这么个东西呢
 ### 本章中英对照表
 | 英文      | 中文 |
 | ----------- | ----------- |
 | print | 打印    |
+|let | 允许、让或使。 这里作为变量声明的表示符号 |
+|str| 字符串（一串字符）|
 [^ps1]: *'hello,World!' 中文意思是“你好，世界”。
 因为 在C语言 中使用它做为第一个演示程序，后来的程序员在学习编程或进行设备调试时延续了这一习惯。* 
