@@ -14,5 +14,8 @@ export default {
     title: "文档",
     type: "page",
     href:"docs/pre"
+  },talk:{
+    title:"杂谈",
+    type:"page"
   }
 };
