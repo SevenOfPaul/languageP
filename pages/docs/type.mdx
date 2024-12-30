@@ -1,3 +1,5 @@
+import LinkButton from "../components/LinkButton";
+
 ## 类型系统
 + 鹏语言是一门动态强类型语言。翻译成人话就是。
 ```ts
@@ -11,11 +13,21 @@ str=nil; //√
 //在js中会变成"21" 但是在鹏语言中会报错。 
 ```
 ## 都有哪些类型呢？
-1. Str 字符串
+### Str 字符串
++ 字符串是存储字符（比如 "彭于晏"）的变量。
++ 字符串可以是引号中的任意文本。需要使用双引号包裹
+<LinkButton title={"字符串"} href={"../wasm"}>
+```ts
+let str="彭于晏";
+//当然也可以使用中文
+诏 彭于晏="彭于晏";
+```
+</LinkButton>
+
 2. Num 数字[^ps1]
 3. Bool 布尔值
 4. Nil 空值
 5. Func 函数（是的，没错，在鹏语言中函数是一种基本类型。）
 6. Time 时间[^p32]
-[^ps1]: 以RUST中f32为标准。
+[^ps1]: Num支持整数和浮点数，以RUST中f32为标准。
 [^p32]: 以RUST中chrono中DateTime为标准。
