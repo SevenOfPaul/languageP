@@ -4,7 +4,6 @@ import Head from "next/head"
 export default function App({ Component, pageProps }) {
     return <>
   <Head children={<><title>鹏语言</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9DKD6Y0JQ"></script>
     <script async src="/analytics.js"></script>
     </>}>
   </Head>
