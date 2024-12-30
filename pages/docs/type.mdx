@@ -24,10 +24,31 @@ let str="彭于晏";
 ```
 </LinkButton>
 
-2. Num 数字[^ps1]
+### Num 数字
++ 鹏语言只有一种数字类型。数字可以带小数点[^ps1]，也可以不带。
+<LinkButton title={"数字"} href={"../wasm"}>
+```ts
+let num=1;
+print 1+num;
+//当然也可以使用中文
+诏 数=1;
+打印 1+数;
+```
+</LinkButton>
 3. Bool 布尔值
++ 布尔只能有两个值：true 或 false。
++ 当然同样支持汉语 真，假
+<LinkButton title={"布尔"} href={"../wasm"}>
+```ts
+let truthy=true;
+let falsy=false;
+//当然也可以使用中文
+诏 真的=真;
+诏 假的=假;
+```
+</LinkButton>
 4. Nil 空值
 5. Func 函数（是的，没错，在鹏语言中函数是一种基本类型。）
 6. Time 时间[^p32]
-[^ps1]: Num支持整数和浮点数，以RUST中f32为标准。
-[^p32]: 以RUST中chrono中DateTime为标准。
+[^ps1]: *Num支持整数和浮点数，以RUST中f32为标准。但是注意 鹏语言的数据计算都是以浮点数（小数）为基准的，所以 0.1+0.2=0.3000000004这种事在鹏语言中也会出现。*
+[^p32]: *以RUST中chrono中DateTime为标准。*

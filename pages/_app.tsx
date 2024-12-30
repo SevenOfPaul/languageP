@@ -4,7 +4,6 @@ import Head from "next/head"
 export default function App({ Component, pageProps }) {
     return <>
   <Head children={<><title>鹏语言</title>
-    <script async src="/analytics.js"></script>
     </>}>
   </Head>
     <Component {...pageProps}/></>
