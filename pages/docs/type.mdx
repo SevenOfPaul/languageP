@@ -74,7 +74,18 @@ let start;
 print start;//nil
 ```
 </LinkButton>
-5. Func 函数（是的，没错，在鹏语言中函数是一种基本类型。）
+## Func 函数
++ 是的，没错，在鹏语言中函数是一种基本类型。毕竟这门语言算是承继了js的血脉。
++ 可以写成非常爽的<Link className="title" href={"/talk/funcy"}>函数式</Link>代码
+```ts
+//声明
+fn hello(){
+    print "hello world!";
+}
+//调用
+hello();
+```
++ of course,函数不知这些，复杂的我们放到函数章节里单说。
 ### Struct 对象
 + 开发中 
 ## 本章中英对照表
@@ -84,6 +95,7 @@ print start;//nil
 |end| 结束|
 |cosumeTime | 花费时间 |
 |now| 现在|
+|of course|当然|
 [^ps1]: *Num支持整数和浮点数，以RUST中f32为标准。但是注意 鹏语言的数据计算都是以浮点数（小数）为基准的，所以 <Link className="title" href={"/talk/ieee"}>
 0.1+0.2=0.3000000004</Link>这种事在鹏语言中也会出现。*
 [^p32]: *以RUST中chrono中DateTime为标准。*
