@@ -1,4 +1,5 @@
 import LinkButton from "../components/LinkButton";
+import Link from "next/link"
 
 ## 类型系统
 + 鹏语言是一门动态强类型语言。翻译成人话就是。
@@ -35,20 +36,54 @@ print 1+num;
 打印 1+数;
 ```
 </LinkButton>
-3. Bool 布尔值
+### Bool 布尔值
 + 布尔只能有两个值：true 或 false。
 + 当然同样支持汉语 真，假
 <LinkButton title={"布尔"} href={"../wasm"}>
 ```ts
 let truthy=true;
 let falsy=false;
-//当然也可以使用中文
+//使用中文
 诏 真的=真;
 诏 假的=假;
 ```
 </LinkButton>
-4. Nil 空值
+### Time 时间[^p32]
++ 对的，你没看错。鹏语言将time作为基本数据类型
++ 这主要是为了从语言原生层面支持时间的计算
+<LinkButton title={"Time"} href={"../wasm"}>
+```ts
+let start=now();
+//算法....
+let end=now();
+//我早就想这么干了  hhh
+let cousmeTime=end-start;
+```
+</LinkButton>
++ 不过time类型是不支持声明的 只能通过原生函数生成
+```ts
+//获取当前时间
+let start=now();//√
+let start=2017-03-12 // ×
+```
+### Nil 空值
++ 单纯的空 声明却未赋值的变量和没有返回值的函数 返回的都是这个值。相当于其他语言的null
+<LinkButton title={"Nil"} href={"../wasm"}>
+```ts
+let start;
+print start;//nil
+```
+</LinkButton>
 5. Func 函数（是的，没错，在鹏语言中函数是一种基本类型。）
-6. Time 时间[^p32]
-[^ps1]: *Num支持整数和浮点数，以RUST中f32为标准。但是注意 鹏语言的数据计算都是以浮点数（小数）为基准的，所以 0.1+0.2=0.3000000004这种事在鹏语言中也会出现。*
+### Struct 对象
++ 开发中 
+## 本章中英对照表
+| 英文      | 中文 |
+| ----------- | ----------- |
+| start | 开始    |
+|end| 结束|
+|cosumeTime | 花费时间 |
+|now| 现在|
+[^ps1]: *Num支持整数和浮点数，以RUST中f32为标准。但是注意 鹏语言的数据计算都是以浮点数（小数）为基准的，所以 <Link className="title" href={"/talk/ieee"}>
+0.1+0.2=0.3000000004</Link>这种事在鹏语言中也会出现。*
 [^p32]: *以RUST中chrono中DateTime为标准。*
