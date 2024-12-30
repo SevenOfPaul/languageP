@@ -21,7 +21,7 @@ const config: DocsThemeConfig = {
   chat: {
     link: 'https://discord.com',
   },
-  docsRepositoryBase: 'https://github.com/',
+  docsRepositoryBase: 'https://github.com',
   footer: {
     component:()=>{
       const footerData=[
