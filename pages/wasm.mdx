@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react"
 import dynamic from 'next/dynamic'
-// import __wbg_get_imports from "../hooks/generatorWbg.js"
 import uploadFile from "../hooks/upload.ts"
 import __wbg_init, { run_program } from "../hooks/p.js";
 export const Wasm=() => {
@@ -10,34 +9,20 @@ export const Wasm=() => {
  }
  useEffect(()=>{
          window.append_to_output = function (s, is_error) {
-         setRes(s);
+          let str={
+            val:s,
+            is_error: is_error
+          }
+           setRes([...res,str]);
          };
  (async()=>{
    await __wbg_init();
   })();
  },[])
-//   useEffect( ()=>{
-//     (async()=>{
-//      setWasmModule(await WebAssembly.instantiateStreaming(await fetch("/wasm/p.wasm"),{
-//       // ...__wbg_get_imports()
-//      }));
-//       window.append_to_output = function (s, is_error) {
-//         console.log(s)
-//         // const outputElement = document.getElementById('cl');
-//         // const message = document.createElement('div');
-//         // message.textContent = s;
-//         // if (is_error) {
-//         //   message.style.color = 'red';
-//         // }
-//         // outputElement.appendChild(message);
-//       };
-//     })()
-//  },[]);
 
   const [val,setVal]=useState("print \"hello world!\"");
-    const [res,setRes]=useState("");
+    const [res,setRes]=useState([]);
   function runCode(){
-    console.log(run_program)
     run_program(val);
   }
     const footer=[
@@ -46,7 +31,7 @@ export const Wasm=() => {
         "鹏语言的相当于是js和c语言的混合体 在函数上偏向js，并且在面向对象上偏向c语言。"
     ]
   return (
-    <div className="p-3">
+    <div className="p-3 pl-6">
     <div className="flex flex-col bg-slate-50 h-160 p-1">
         <div className="flex flex-row justify-between p-3 mb-2">
                <p className="text-2xl font-bold">鹏语言演练场</p>
@@ -59,8 +44,9 @@ export const Wasm=() => {
            placeholder="请输入代码"
           value={val} onChange={(e) => setVal(e.target.value)}
            className="textarea border-2 border-slate-300 textarea-bordered h-80 scroll-y"></textarea>
-           <div className="h-full scroll-y">
-          {res}
+           <div className="h-full scroll-y p-3">
+          { res.map(r=>r.is_error?<p className="text-red-600">{r.val}</p>:<p>{r.val}</p>) }
+
            </div>
 </div>
  <div className="bg-base-200 p-3">
