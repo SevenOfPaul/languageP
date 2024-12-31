@@ -13,16 +13,17 @@ export const Wasm=() => {
             val:s,
             is_error: is_error
           }
-           setRes([...res,str]);
+           setRes(prev => [...prev,str]);
          };
  (async()=>{
    await __wbg_init();
   })();
  },[])
 
-  const [val,setVal]=useState("print \"hello world!\"");
-    const [res,setRes]=useState([]);
+  const [val,setVal]=useState("print \"hello world!\";");
+  const [res,setRes]=useState([]);
   function runCode(){
+    setRes([]);
     run_program(val);
   }
     const footer=[
@@ -45,7 +46,7 @@ export const Wasm=() => {
           value={val} onChange={(e) => setVal(e.target.value)}
            className="textarea border-2 border-slate-300 textarea-bordered h-80 scroll-y"></textarea>
            <div className="h-full scroll-y p-3">
-          { res.map(r=>r.is_error?<p className="text-red-600">{r.val}</p>:<p>{r.val}</p>) }
+          { res.map((r,key)=>r.is_error?<p className="text-red-600" key={r.val}>{r.val}</p>:<p key={r.val+key}>{r.val}</p>) }
 
            </div>
 </div>
