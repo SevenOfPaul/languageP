@@ -14,6 +14,7 @@ module.exports = {
     extend: {
       height: {
         120: "30rem",
+        140: "32rem",
         160: "40rem"
       },
       margin: {

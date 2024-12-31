@@ -1,5 +1,6 @@
 import { Image,Callout } from 'nextra/components'
 import Link from "next/link"
+import ChatLeft from "../../components/Chat"
 
 ## 变量声明
 ### 试试你的hello world![^ps1]
@@ -10,11 +11,7 @@ print "hello world!";
 <br/>
 <Image src="/hello.png" className='w-full'/>
 + ~~恭喜，你学会了鹏语言，去放飞自我吧。~~，万里长征可以迈第二步了。 
-<div class="chat chat-start">
-  <div class="chat-bubble">
- 去打印五个白色的`hello world!`。
-  </div>
-  </div>
+<ChatLeft title={" 去打印五个白色的`hello world!`。"}/>
   ```ts
 print "hello world!";
 print "hello world!";
@@ -26,19 +23,11 @@ print "hello world!";
 <div class="chat chat-end">
   <div class="chat-bubble">快来夸夸我！</div>
 </div>
-<div class="chat chat-start">
-  <div class="chat-bubble">
- 再去打印十个七彩斑斓`hello world!`。
-  </div>
-  </div>
+<ChatLeft title={"再去打印十个七彩斑斓`hello world!`。"}/>
   <div class="chat chat-end">
   <div class="chat-bubble">(╯°Д°)╯︵ ┻━┻ 老子不干了。</div>
 </div>
-<div class="chat chat-start">
-  <div class="chat-bubble">
-那如果有了变量呢
-  </div>
-  </div>
+<ChatLeft title={"那如果有了变量呢"}/>
 ```ts
 //鹏语言支持中文关键字
 诏 字符="hello world!"
@@ -48,16 +37,10 @@ print "hello world!";
 打印 字符;
 打印 字符;
 ```
-<br/>
-<div class="chat chat-end">
-  <div class="chat-bubble">
-  (↼_↼)有区别？
-  </div>
+  <div class="chat chat-end">
+  <div class="chat-bubble">(↼_↼)有区别？</div>
 </div>
-<div class="chat chat-start">
-  <div class="chat-bubble">别着急，要组合起来用的</div>
-</div>
-
+<ChatLeft title={"别着急，要组合起来用的"}/>
 ```ts
 //伪代码
 诏 字符="hello world!"

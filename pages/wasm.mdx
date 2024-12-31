@@ -11,8 +11,9 @@ export const Wasm=() => {
          window.append_to_output = function (s, is_error) {
           let str={
             val:s,
-            is_error: is_error
+            is_error
           }
+          console.log(str)
            setRes(prev => [...prev,str]);
          };
  (async()=>{
@@ -33,7 +34,7 @@ export const Wasm=() => {
     ]
   return (
     <div className="p-3 pl-6">
-    <div className="flex flex-col bg-slate-50 h-160 p-1">
+    <div className="flex flex-col bg-slate-50 h-140 p-1">
         <div className="flex flex-row justify-between p-3 mb-2">
                <p className="text-2xl font-bold">鹏语言演练场</p>
                <div className="flex flex-row items-center">
@@ -45,7 +46,7 @@ export const Wasm=() => {
            placeholder="请输入代码"
           value={val} onChange={(e) => setVal(e.target.value)}
            className="textarea border-2 border-slate-300 textarea-bordered h-80 scroll-y"></textarea>
-           <div className="h-full scroll-y p-3">
+           <div className="h-56 scroll-y p-3">
           { res.map((r,key)=>r.is_error?<p className="text-red-600" key={r.val}>{r.val}</p>:<p key={r.val+key}>{r.val}</p>) }
 
            </div>
