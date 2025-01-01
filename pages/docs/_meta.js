@@ -7,5 +7,5 @@ export default {
   grammar:"语法",
   func:"函数",
   struct:"结构体",
-  author:"作者简介"
+
 };
