@@ -1,1 +1,69 @@
+import LinkButton from ".././../components/LinkButton"
+import Link from "next/link"
+
 ## 函数
++ 函数算是重点之一了，毕竟是一门函数式的语言。
++ 鹏语言使用`fn`关键字声明函数（抄的）。当然你可以用中文`令`。
++ 并且像其它语言一样可以传入参数，也可以返回值。
++ 我个人非常推崇函数式，所以在鹏语言中 你可以
+```ts
+fn add(n1,n2){
+    return n1+n2;
+}
+```
++ 在这之中 `add` 是声明的函数名，`n1`和`n2`是函数调用需要的参数。
++ 例如使用`()`调用`add`就需要
+```ts
+add(1,2);
+```
++ 这样1和2就会传入到n1，n2的位置。
+### return 关键字
++ 当我们需要把函数内部计算的值导出到外部时就需要使用`return`;
+```ts
+let res=add(1,2);
+print res; //3
+```
++ 如果你不加`return`呢会发生什么？
+```ts
+fn add(n1,n2){
+     n1+n2;
+}
+let res=add(1,2);
+print res; //nil
+```
++ 是的鹏语言会自动填充nil作为返回值
+### lambda表达式
++ 上面的代码想必都是可以理解的，非常常规的函数声明调用。
++ 那如果我们把另一个函数作为参数传入呢？
+<LinkButton title="传入一个函数" href="/wasm">
+```ts
+fn add(n1,f2){
+    return f2(n1)
+}
+add(1,fn(n){print n});
+```
+</LinkButton>
++ 这种方式被称为lambda表达式。相信看完<Link href="" className="title">语句和表达式</Link>的童鞋都知道在表达式的定义。
++ 那我们就可以玩出花来。
+<LinkButton title="返回一个函数" href="/wasm">
+```ts
+fn add(n1){
+    return fn(n2){
+        return n1*n2;
+    }
+}
+add(1)(2)
+```
+</LinkButton>
+<LinkButton title="闭包" href="/wasm">
+```ts
+fn add(n1){
+    return fn(){
+        return n1*2;
+    }
+}
+add(1)()
+```
+</LinkButton>
+---
++ 这股传自Lsip的血脉经由Scheme，Javscript流传到了鹏语言的身上。
