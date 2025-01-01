@@ -19,7 +19,7 @@ const config: DocsThemeConfig = {
     link: 'https://github.com/SevenOfPaul/compiler',
   },
   chat: {
-    link: 'https://discord.com',
+    icon: <Image alt='logo' className='w-8 h-8' src={"/QQ.png"}></Image>,
   },
   docsRepositoryBase: 'https://github.com',
   footer: {
