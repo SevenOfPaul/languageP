@@ -105,6 +105,18 @@ for(let i=0;i<100;i=i+1){
     打印 "你好 世界";
 }
 ```
++ 那我要是想中断循环怎么办？
++ 可以使用`break`关键字。
+```ts
+for(let i=0;i<100;i=i+1){
+ if(i==10){
+    break;
+ }
+  print "hello world";
+}
+```
++ 这样就可以提前中断了。
++ 对于 其他语言中常见的continue暂不支持。（这个没想好怎么写！）
 <ChatLeft title={"现在我们把之前所有内容穿起来，玩个大活！"}/>
 <LinkButton title="计算圆周率" href="../wasm">
 ```ts
