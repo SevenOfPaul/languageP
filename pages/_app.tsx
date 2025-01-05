@@ -3,8 +3,7 @@ import "../styles/global.scss"
 import Head from "next/head"
 export default function App({ Component, pageProps }) {
     return <>
-  <Head children={<><title>鹏语言</title><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6085331651697044"
-     crossorigin="anonymous"></script>
+  <Head children={<><title>鹏语言</title>
     </>}>
   </Head>
     <Component {...pageProps}/></>
