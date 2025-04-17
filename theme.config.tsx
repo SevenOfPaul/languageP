@@ -44,36 +44,36 @@ const config: DocsThemeConfig = {
           },
           {
             name: "杂谈",
-            url: "./pages/talk/ieee",
+            url: "./talk/architecture",
           },
         ],
       };
       const footerData = [
-{
+        {
           kind: "不可不看",
           icon: <Home className="w-5 h-5 text-blue-500" />,
           contents: [
             {
               name: "首页",
               path: "/",
-              icon: <Home className="w-4 h-4 text-blue-500" />
+              icon: <Home className="w-4 h-4 text-blue-500" />,
             },
             {
               name: "文章",
               path: "/docs",
-              icon: <FileText className="w-4 h-4 text-green-500" />
+              icon: <FileText className="w-4 h-4 text-green-500" />,
             },
             {
               name: "分类",
               path: "/docs/category",
-              icon: <FolderOpen className="w-4 h-4 text-yellow-500" />
+              icon: <FolderOpen className="w-4 h-4 text-yellow-500" />,
             },
             {
               name: "标签",
               path: "/docs/tags",
-              icon: <Tags className="w-4 h-4 text-purple-500" />
-            }
-          ]
+              icon: <Tags className="w-4 h-4 text-purple-500" />,
+            },
+          ],
         },
         {
           kind: "快速链接",
@@ -82,37 +82,37 @@ const config: DocsThemeConfig = {
             {
               name: "解释器教程",
               path: "https://github.com/munificent/craftinginterpreters",
-              icon: <Book className="w-4 h-4 text-pink-500" />
+              icon: <Book className="w-4 h-4 text-pink-500" />,
             },
             {
               name: "编译器源码",
               path: "https://github.com/SevenOfPaul/compiler",
-              icon: <Github className="w-4 h-4 text-gray-500" />
-            }
-          ]
+              icon: <Github className="w-4 h-4 text-gray-500" />,
+            },
+          ],
         },
         {
           kind: "交流",
           icon: <MessageCircle className="w-5 h-5 text-teal-500" />,
           contents: [
             {
-              name: "Email: howhite2023@gmail.com",
-              path: "mailto:howhite2023@gmail.com",
-              icon: <Mail className="w-4 h-4 text-orange-500" />
+              name: "Email: 3167385363@qq.com",
+              path: "mailto:3167385363@qq.com",
+              icon: <Mail className="w-4 h-4 text-orange-500" />,
             },
             {
-              name: "WeChat: HoWhiteDeveloper",
-              path: "#",
-              icon: <MessageCircle className="w-4 h-4 text-green-500" />
+              name: "WeChat: Paul",
+              path: "weixin://contacts/profile/13136918273",
+              icon: <MessageCircle className="w-4 h-4 text-green-500" />,
             },
             {
-              name: "Github: EmiyaK542",
-              path: "https://github.com/EmiyaK542",
-              icon: <Github className="w-4 h-4 text-violet-500" />
-            }
-          ]
-        }
-      ]
+              name: "Github: SevenOfPaul",
+              path: "https://github.com/SevenOfPaul",
+              icon: <Github className="w-4 h-4 text-violet-500" />,
+            },
+          ],
+        },
+      ];
       return (
         <>
         <div class="h-[1px] w-full bg-[#2926260d]"></div>
