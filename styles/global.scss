@@ -31,3 +31,8 @@ a{
 .title{
    @apply bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent;
 }
+article{
+    margin-bottom:0 !important ;
+    padding-bottom:0 !important;
+    min-height: 50vh !important;
+}
