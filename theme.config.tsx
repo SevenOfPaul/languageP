@@ -4,12 +4,15 @@ import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import styles from "./styles/theme.module.scss"
 import Link from 'next/link'
 import { Home, FileText, Tags, FolderOpen, Book, Github, Mail, MessageCircle, Heart } from 'lucide-react'
+import { Hitokoto } from './components/Hitokoto'
+
 const config: DocsThemeConfig = {
 
   head: () => {
     const { frontMatter } = useConfig();
     return <>
-      <meta property="og:title" content={frontMatter.title || '鹏语言'} /></>
+      <meta property="og:title" content={frontMatter.title || '鹏语言'} />
+    </>
   },
   logo:
     <div className={styles.logo}>
@@ -115,36 +118,42 @@ const config: DocsThemeConfig = {
       ];
       return (
         <>
-        <div class="h-[1px] w-full bg-[#2926260d]"></div>
-          <div className="w-full bg-gradient-to-b from-slate-50 to-slate-100 dark:from-neutral-900 dark:to-neutral-950 pt-16 pb-8 px-6">
+          <div className="h-[1px] w-full bg-[#2926260d]"></div>
+          <div className="w-full bg-gradient-to-b from-slate-50 to-slate-100 dark:from-neutral-900 dark:to-neutral-950 pt-16 pb-8 px-6 relative">
+            <Hitokoto />
             <div className="max-w-6xl mx-auto flex flex-row justify-between flex-wrap gap-12">
               {/* 修改返回的 JSX，在 max-w-6xl 的 div 内最前面添加：
-              <div className="flex flex-row justify-between flex-wrap gap-12">
                 {/* 左侧区块 */}
-                <div className="flex flex-col gap-4 max-w-md">
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                    {LeftData.name}
-                  </h2>
-                  <p className="max-w-96 text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {LeftData.desc}
-                  </p>
-                  <div className="flex flex-row flex-wrap gap-2">
-                    {LeftData.paths.map((path, index) => (
-                      <Link
-                        key={path.name}
-                        href={path.url || "#"}
-                        className="group flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 
+              <div className="flex flex-col gap-4 max-w-md">
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  {LeftData.name}
+                </h2>
+                <p className="max-w-96 text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {LeftData.desc}
+                </p>
+                <div className="flex flex-row flex-wrap gap-2">
+                  {LeftData.paths.map((path, index) => (
+                    <Link
+                      key={path.name}
+                      href={path.url || "#"}
+                      className="group flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 
                         dark:hover:text-gray-200 transition-all duration-300 
                         relative overflow-hidden rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-800"
-                      >
-                        <span className="absolute inset-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 
-                        transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"/>
-                        <Book className={`w-4 h-4 ${index === 0 ? 'text-blue-500' : 'text-purple-500'}`} />
-                        <span className="relative z-10">{path.name}</span>
-                      </Link>
-                    ))}
-                  </div>
+                    >
+                      <span
+                        className="absolute inset-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 
+                        transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
+                      />
+                      <Book
+                        className={`w-4 h-4 ${
+                          index === 0 ? "text-blue-500" : "text-purple-500"
+                        }`}
+                      />
+                      <span className="relative z-10">{path.name}</span>
+                    </Link>
+                  ))}
                 </div>
+              </div>
               {footerData.map((d) => (
                 <div key={d.kind} className="flex flex-col gap-3 group">
                   <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-200 flex items-center gap-2">
