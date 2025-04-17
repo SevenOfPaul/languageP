@@ -3,19 +3,25 @@ export default {
     title: "首页",
     type: "page",
   },
+  rCore: {
+    title: "rCore",
+    type: "page",
+    href: "docs/docs",
+  },
   wasm: {
     title: "演练场",
     type: "page",
     theme: {
-      layout: 'raw'
-    }
+      layout: "raw",
+    },
   },
   docs: {
     title: "文档",
     type: "page",
-    href:"docs/pre"
-  },talk:{
-    title:"杂谈",
-    type:"page"
-  }
+    href: "docs/p",
+  },
+  talk: {
+    title: "杂谈",
+    type: "page",
+  },
 };

@@ -1,61 +1,57 @@
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import dynamic from 'next/dynamic'
 import uploadFile from "../hooks/upload.ts"
 import __wbg_init, { run_program } from "../hooks/p.js";
-export const Wasm=() => {
- async function upP(){
-   const res=await uploadFile();
-   setVal(res);
- }
- useEffect(()=>{
-         window.append_to_output = function (s, is_error) {
-          let str={
-            val:s,
-            is_error
-          }
-           setRes(prev => [...prev,str]);
-         };
- (async()=>{
-   await __wbg_init();
-  })();
- },[])
+export const Wasm = () => {
+  async function upP() {
+    const res = await uploadFile();
+    setVal(res);
+  }
+  useEffect(() => {
+    window.append_to_output = function (s, is_error) {
+        setRes(prev => [...prev, { val: s, is_error }]);
+    };
+    (async () => {
+      await __wbg_init();
+    })();
+  }, [])
 
-  const [val,setVal]=useState("print \"hello world!\";");
-  const [res,setRes]=useState([]);
-  function runCode(){
+  const [val, setVal] = useState("print \"hello world!\";");
+  const [res, setRes] = useState([]);
+  function runCode() {
     setRes([]);
     run_program(val);
   }
-    const footer=[
-        "鹏语言演练场 可以让你借助 鹏语言解释器的 WASM 版本在浏览器中运行你的代码。",
-        "鹏语言解释器 是一个基于 AST 语法树的 解释器，使用 Rust 实现。演练场可以作为你在学习和编程时的试错工具和参考实现。",
-        "鹏语言的相当于是js和c语言的混合体 在函数上偏向js，并且在面向对象上偏向c语言。"
-    ]
+  const footer = [
+    "鹏语言演练场 可以让你借助 鹏语言解释器的 WASM 版本在浏览器中运行你的代码。",
+    "鹏语言解释器 是一个基于 AST 语法树的 解释器，使用 Rust 实现。演练场可以作为你在学习和编程时的试错工具和参考实现。",
+    "鹏语言的相当于是js和c语言的混合体 在函数上偏向js，并且在面向对象上偏向c语言。"
+  ]
   return (
     <div className="p-3 pl-6">
-    <div className="flex flex-col bg-slate-50 h-140 p-1">
+      <div className="flex flex-col bg-slate-50 h-140 p-1">
         <div className="flex flex-row justify-between p-3 mb-2">
-               <p className="text-2xl font-bold">鹏语言演练场</p>
-               <div className="flex flex-row items-center">
+          <p className="text-2xl font-bold">鹏语言演练场</p>
+          <div className="flex flex-row items-center">
             <button className="btn btn-outline btn-xs ml-1 mr-1" onClick={upP}>上传文件 ⇧</button>
             <button className="btn btn-outline btn-xs ml-1 mr-1" onClick={runCode}>运行 ▷</button>
-               </div>
+          </div>
         </div>
-         <textarea
-           placeholder="请输入代码"
+        <textarea
+          placeholder="请输入代码"
           value={val} onChange={(e) => setVal(e.target.value)}
-           className="textarea border-2 border-slate-300 textarea-bordered h-80 scroll-y"></textarea>
-           <div className="h-56 scroll-y p-3">
-          { res.map((r,key)=>r.is_error?<p className="text-red-600" key={r.val}>{r.val}</p>:<p key={r.val+key}>{r.val}</p>) }
+          className="textarea border-2 border-slate-300 textarea-bordered h-80 scroll-y"></textarea>
+        <div className="h-56 scroll-y p-3">
+          {res.map((r, key) => r.is_error ? <p className="text-red-600" key={r.val}>{r.val}</p> : <p key={r.val + key}>{r.val}</p>)}
 
-           </div>
-</div>
- <div className="bg-base-200 p-3">
-<p className="text-3xl font-bold m-1">鹏语言演练场</p>
-{footer.map(f=> <p key={f} className="mb-2 mt-2">{f}</p>)}
-</div>
-</div>
-);
+        </div>
+      </div>
+      <div className="bg-base-200 p-3">
+        <p className="text-3xl font-bold m-1">鹏语言演练场</p>
+        {footer.map(f => <p key={f} className="mb-2 mt-2">{f}</p>)}
+      </div>
+    </div>
+  );
 };
 
 <Wasm/>
