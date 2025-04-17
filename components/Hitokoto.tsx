@@ -15,7 +15,9 @@ export const Hitokoto = () => {
         setData(await res.json());
   }
   useEffect(() => {
-
+ (async()=>{
+     await  getHito();
+ })();
   }, [])
 
   if (!data) return null

@@ -1,6 +1,6 @@
 export default {
   index: {
-    title: "鹏语言",
+    title: "首页",
     type: "page",
   },
   wasm: {
