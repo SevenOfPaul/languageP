@@ -5,6 +5,7 @@ import styles from "./styles/theme.module.scss"
 import Link from 'next/link'
 import { Home, FileText, Tags, FolderOpen, Book, Github, Mail, MessageCircle, Heart } from 'lucide-react'
 import { Hitokoto } from './components/Hitokoto'
+import { motion } from 'framer-motion'
 
 const config: DocsThemeConfig = {
 
@@ -32,6 +33,31 @@ const config: DocsThemeConfig = {
   docsRepositoryBase: 'https://github.com',
    footer: {
      component: () => {
+                  // 在 footer component 中添加动画配置
+            const container = {
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: { 
+                  staggerChildren: 0.3,
+                  delayChildren: 0.2
+                }
+              }
+            };
+            const item = {
+              hidden: { opacity: 0, y: 50, scale: 0.9 },
+              show: { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                transition: {
+                  type: "spring",
+                  bounce: 0.4,
+                  duration: 0.8
+                }
+              }
+            };
+            
       // 首先修复 LeftData 的语法错误并添加类型
       const LeftData = {
         name: "For Paul",
@@ -121,17 +147,20 @@ const config: DocsThemeConfig = {
           <div className="h-[1px] w-full bg-[#2926260d]"></div>
           <div className="w-full bg-gradient-to-b from-slate-50 to-slate-100 dark:from-neutral-900 dark:to-neutral-950 pt-16 pb-8 px-6 relative">
             <Hitokoto />
-            <div className="max-w-6xl mx-auto flex flex-row justify-between flex-wrap gap-12">
-              {/* 修改返回的 JSX，在 max-w-6xl 的 div 内最前面添加：
-                {/* 左侧区块 */}
-              <div className="flex flex-col gap-4 max-w-md">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <div className="max-w-6xl mx-auto flex flex-row justify-between flex-wrap gap-20">
+              <motion.div 
+                initial="hidden"
+                animate="show"
+                variants={container}
+                className="flex flex-col gap-4 max-w-md"
+              >
+                <motion.h2 variants={item} className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                   {LeftData.name}
-                </h2>
-                <p className="max-w-96 text-gray-600 dark:text-gray-400 leading-relaxed">
+                </motion.h2>
+                <motion.p variants={item} className="max-w-96 text-gray-600 dark:text-gray-400 leading-relaxed">
                   {LeftData.desc}
-                </p>
-                <div className="flex flex-row flex-wrap gap-2">
+                </motion.p>
+                <motion.div variants={item} className="flex flex-row flex-wrap gap-2">
                   {LeftData.paths.map((path, index) => (
                     <Link
                       key={path.name}
@@ -152,33 +181,43 @@ const config: DocsThemeConfig = {
                       <span className="relative z-10">{path.name}</span>
                     </Link>
                   ))}
-                </div>
+                </motion.div>
+              </motion.div>
+              
+              <div className="flex-1 flex flex-row flex-wrap justify-between">
+                {footerData.map((d) => (
+                  <motion.div 
+                    variants={item} 
+                    key={d.kind} 
+                    className="flex flex-col gap-3 group"
+                    initial="hidden"
+                    animate="show"
+                  >
+                    <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-200 flex items-center gap-2">
+                      <span className="transform group-hover:rotate-12 transition-transform duration-300">
+                        {d.icon}
+                      </span>
+                      {d.kind}
+                    </h3>
+                    {d.contents.map((k) => (
+                      <Link
+                        key={k.name}
+                        href={k.path}
+                        className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 
+                        transition-all duration-300 flex items-center gap-2 hover:translate-x-1 
+                        relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
+                        after:bg-gradient-to-r after:from-pink-500 after:to-violet-500 
+                        hover:after:w-full after:transition-all after:duration-300"
+                      >
+                        <span className="opacity-100">{k.icon}</span>
+                        {k.name}
+                      </Link>
+                    ))}
+                  </motion.div>
+                ))}
               </div>
-              {footerData.map((d) => (
-                <div key={d.kind} className="flex flex-col gap-3 group">
-                  <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-200 flex items-center gap-2">
-                    <span className="transform group-hover:rotate-12 transition-transform duration-300">
-                      {d.icon}
-                    </span>
-                    {d.kind}
-                  </h3>
-                  {d.contents.map((k) => (
-                    <Link
-                      key={k.name}
-                      href={k.path}
-                      className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 
-                      transition-all duration-300 flex items-center gap-2 hover:translate-x-1 
-                      relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-                      after:bg-gradient-to-r after:from-pink-500 after:to-violet-500 
-                      hover:after:w-full after:transition-all after:duration-300"
-                    >
-                      <span className="opacity-100">{k.icon}</span>
-                      {k.name}
-                    </Link>
-                  ))}
-                </div>
-              ))}
             </div>
+            
             <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-600 dark:text-gray-400">
               <p className="flex items-center justify-center gap-2">
                 © 2025 Paul Blog • Made with

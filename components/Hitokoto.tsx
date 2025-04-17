@@ -11,8 +11,17 @@ interface HitokotoData {
 export const Hitokoto = () => {
   const [data, setData] = useState<HitokotoData | null>(null)
   async function getHito(){
-      let res=await fetch("https://v1.hitokoto.cn/")
+    try{
+         let res=await fetch("https://v1.hitokoto.cn/")
         setData(await res.json());
+    }catch(e){
+        setData({
+          hitokoto: "能用Rust编写的，终究会使用Rust。",
+          from: "R门",
+          from_who: "Paul",
+        });
+      console.error(e)
+    }
   }
   useEffect(() => {
  (async()=>{

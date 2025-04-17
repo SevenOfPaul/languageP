@@ -1,4 +1,5 @@
 export default {
+  p:"鹏语言",
   install: "安装",
   pre: "食用须知",
   variable: "变量声明",
