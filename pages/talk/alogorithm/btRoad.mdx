@@ -1,0 +1,28 @@
+# 二叉树路径
+今天我们来聊聊二叉树，二叉树是一种非常常见的数据结构了，也是很基础的数据结构。遇见树的结构，我们已经可以形成思维惯性，那就是用递归。递归二叉树一共有三种方式，分别为前序中序和后序。前序即先走根结点 ---> 左子树 ---> 右子树，中序为左子树---> 根结点 ---> 右子树，后序为左子树 ---> 右子树 ---> 根结点。这么说可能听不太懂。
+![1720349166770](https://github.com/SevenOfPaul/paul.github.io/assets/83870824/4e1d9baa-458c-4576-832a-f47ac970a296)
+以下图为例
+前序遍历为`1->2->5->3`
+中序为`1->2->3->5`
+后序为`5->2->3->1`
+了解了这个之后我们就可以来看看下面这道题了。
+![1720349374142](https://github.com/SevenOfPaul/paul.github.io/assets/83870824/cc0f84b9-e719-4e0a-be25-af10072912a7)
+```cpp
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> nums;
+    bfs(root,nums);
+    return nums;
+    }
+    void bfs(TreeNode* root,vector<int> &nums){
+        if(!root){
+            return ;
+        }
+      nums.push_back(root->val);
+      bfs(root->left,nums);
+     bfs(root->right,nums);
+    }
+};
+```
+好了，结束了，二叉树的遍历就是这么简单！

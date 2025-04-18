@@ -1,0 +1,57 @@
+**力扣算法第一题 两数之和是非常简单的一道题**
+![1719896970686](https://github.com/SevenOfPaul/paul.github.io/assets/83870824/f1740bed-69aa-480b-b571-14c80101c5aa)
+由于是简单题，只需要简单的暴力就可以做到了，
+我们首先用冒泡排序的方式来一对一的对比。
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        for(int k1=0;k1<nums.size();k1++) {
+           for(int k2=0;k2<nums.size();k2++) {
+             if (nums[k1]+nums[k2]==target) {
+                 return vector{k1,k2};
+             }
+           }
+       }
+       return vector{0,0};
+    }
+};
+```
+这样写虽然通过是没有什么问题的，但是毕竟是算法，还是要追求下时间复杂度。
+简单优化下冒泡
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        for(int k1=0;k1<nums.size();k1++) {
+           for(int k2=k1+1;k2<nums.size();k2++) {
+             if (nums[k1]+nums[k2]==target) {
+                 return vector{k1,k2};
+             }
+           }
+       }
+       return vector{0,0};
+    }
+};
+```
+这样写时间就可以缩短很多了，但是依然还是太慢了，时间复杂度也依然保持在n^2的状态。我们用出终极大招 HashMap。
+```c++
+class Solution {
+public:
+    vector<int> twoSum(const vector<int>& nums, int target) {
+      std::map<int,int> m;
+       for(int k1=0;k1<nums.size();k1++) {
+            m.insert({nums[k1],k1});
+       }
+        for(int k1=0;k1<nums.size();k1++) {
+          auto res=m.find(target-nums[k1]);
+           if(res!=m.end()&&res->second!=k1) {
+               printInsertionStatus(res);
+              return vector{k1,res->second};
+           }
+        }
+        return vector{0,0};
+    }
+};
+```
+** 完成

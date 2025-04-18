@@ -1,0 +1,44 @@
+# 电话号码的字母组合
+![image](https://github.com/user-attachments/assets/986d225a-2961-4cec-baa2-430456c84652)
+[电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/)
+今天依然是很简单的一道题，别看东西那么多，实际上就是多叉树路径，我们要递归的算法，把每一层的结果保存存入下一层，长度符合要求就存进vec中
+![image](https://github.com/user-attachments/assets/e6c4f583-5088-4403-9625-c0238b9df44e)
+## 入口函数
+```rust
+use std::collections::HashMap;
+impl Solution {
+    pub fn letter_combinations(digits: String) -> Vec<String> {
+
+        let mut ans:Vec<String>=vec![];
+        if digits.len()==0{
+            return ans;
+        }
+        let map = HashMap::from([
+            (2, vec!('a', 'b', 'c')),
+            (3, vec!('d', 'e', 'f')),
+            (4, vec!('g', 'h', 'i')),
+            (5, vec!('j', 'k', 'l')),
+            (6, vec!('m', 'n', 'o')),
+            (7, vec!('p', 'q', 'r', 's')),
+            (8, vec!('t', 'u', 'v')),
+            (9, vec!('w', 'x', 'y', 'z'))
+        ]);
+  let len=digits.len();
+            Self::addVec(digits.chars().collect(),0,map.clone(),String::from(""),&mut ans,len);
+        ans
+    }
+```
+## 递归函数
+```rust
+ pub fn addVec(digits:Vec<char>,idx:usize,map:HashMap<i32,Vec<char>>, origin:String, ans:&mut Vec<String>,len:usize){
+        if origin.len()==len{
+              ans.push(origin);
+      }else{
+            let strs=map.get(&(digits[idx] as i32 - '0' as i32)).unwrap();
+          for str in strs {
+             Self::addVec(digits.clone(),idx+1,map.clone(),(origin.clone()+ &*str.to_string()),ans,len);
+          }
+      }
+    }
+}
+```
