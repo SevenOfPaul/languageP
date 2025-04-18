@@ -4,6 +4,10 @@ export interface FriendLink {
 }
 export   const links: FriendLink[] = [
   {
+    text: "Puresys纯净系统-软件下载",
+    path: "https://www.puresys.net/",
+  },
+  {
     text: "月关网游",
     path: "https://yueguan.vip",
   },
