@@ -6,17 +6,18 @@ const withNextra = nextra({
 })
 
 export default withNextra({
+  swcMinify: true,
   webpack: (config, { isServer }) => {
     config.experiments = {
       ...config.experiments,
       asyncWebAssembly: true,
-    }
+    };
 
     config.module.rules.push({
       test: /\.wasm$/,
-      type: 'webassembly/async',
-    })
+      type: "webassembly/async",
+    });
 
-    return config
-  }
-})
+    return config;
+  },
+});
