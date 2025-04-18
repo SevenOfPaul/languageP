@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Home, FileText, Tags, FolderOpen, Book, Github, Mail, MessageCircle, Heart } from 'lucide-react'
 import { Hitokoto } from './components/Hitokoto'
 import { motion } from 'framer-motion'
+import { FriendLinks } from './components/FriendLinks'
 
 const config: DocsThemeConfig = {
 
@@ -146,19 +147,28 @@ const config: DocsThemeConfig = {
           <div className="w-full bg-gradient-to-b from-slate-50 to-slate-100 dark:from-neutral-900 dark:to-neutral-950 pt-16 pb-8 px-6 relative">
             <Hitokoto />
             <div className="max-w-6xl mx-auto flex flex-row justify-between flex-wrap gap-20">
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 animate="show"
                 variants={container}
                 className="flex flex-col gap-4 max-w-md"
               >
-                <motion.h2 variants={item} className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                <motion.h2
+                  variants={item}
+                  className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
+                >
                   {LeftData.name}
                 </motion.h2>
-                <motion.p variants={item} className="max-w-96 text-gray-600 dark:text-gray-400 leading-relaxed">
+                <motion.p
+                  variants={item}
+                  className="max-w-96 text-gray-600 dark:text-gray-400 leading-relaxed"
+                >
                   {LeftData.desc}
                 </motion.p>
-                <motion.div variants={item} className="flex flex-row flex-wrap gap-2">
+                <motion.div
+                  variants={item}
+                  className="flex flex-row flex-wrap gap-2"
+                >
                   {LeftData.paths.map((path, index) => (
                     <Link
                       key={path.name}
@@ -181,12 +191,12 @@ const config: DocsThemeConfig = {
                   ))}
                 </motion.div>
               </motion.div>
-              
+
               <div className="flex-1 flex flex-row flex-wrap justify-between">
                 {footerData.map((d) => (
-                  <motion.div 
-                    variants={item} 
-                    key={d.kind} 
+                  <motion.div
+                    variants={item}
+                    key={d.kind}
                     className="flex flex-col gap-3 group"
                     initial="hidden"
                     animate="show"
@@ -215,8 +225,8 @@ const config: DocsThemeConfig = {
                 ))}
               </div>
             </div>
-            
             <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-600 dark:text-gray-400">
+              <FriendLinks />
               <p className="flex items-center justify-center gap-2">
                 © 2025 Paul Blog • Made with
                 <Heart className="w-4 h-4 text-red-500 animate-pulse" />
@@ -224,6 +234,9 @@ const config: DocsThemeConfig = {
               </p>
               <p className="mt-2 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
                 使用 Next Rust 和 Tailwind CSS 构建
+              </p>
+              <p className="mt-2 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
+                最近更新时间: {"2025-04-18"}
               </p>
             </div>
           </div>
