@@ -12,7 +12,7 @@ const config: DocsThemeConfig = {
   head: () => {
     const { frontMatter } = useConfig();
     return <>
-      <meta property="og:title" content={frontMatter.title || '鹏语言'} />
+      <meta property="og:title" content={frontMatter.title||"Paul's Blog"} />
     </>
   },
   logo:
@@ -33,7 +33,6 @@ const config: DocsThemeConfig = {
   docsRepositoryBase: 'https://github.com',
    footer: {
      component: () => {
-                  // 在 footer component 中添加动画配置
             const container = {
               hidden: { opacity: 0 },
               show: {
@@ -58,14 +57,13 @@ const config: DocsThemeConfig = {
               }
             };
             
-      // 首先修复 LeftData 的语法错误并添加类型
       const LeftData = {
         name: "For Paul",
         desc: "这是一个个人博客，主要用于记录自己的学习过程，用于ts和rust的技术交流",
         paths: [
           {
             name: "rust手搓解释器",
-            url: "",
+            url: "/docs/p",
           },
           {
             name: "rCore心路",

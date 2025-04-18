@@ -12,9 +12,16 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
   hljs.highlightAll();
 }, []);
-    return <>
-  <Head children={<><title>鹏语言</title>
-    </>}>
-  </Head>
-    <Component {...pageProps}/></>
+    return (
+      <>
+        <Head
+          children={
+            <>
+              <title>Paul's Blog</title>
+            </>
+          }
+        ></Head>
+        <Component {...pageProps} />
+      </>
+    );
   }
