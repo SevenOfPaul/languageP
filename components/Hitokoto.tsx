@@ -33,7 +33,7 @@ export const Hitokoto = () => {
 
   return (
     <div
-      className="fixed bottom-4 right-4 z-50 max-w-sm hover:cursor-pointer"
+      className="fixed md:bottom-4 bottom-36  right-4 z-50 max-w-sm hover:cursor-pointer"
       onClick={() => getHito()}
     >
       <div className="chat chat-end">

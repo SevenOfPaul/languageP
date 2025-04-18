@@ -74,13 +74,13 @@ export const Main = () => {
 
       <motion.div 
         variants={container}
-        className="flex flex-col md:flex-row justify-center gap-6 mt-12 px-4 pb-4"
+        className="flex w-full flex-col md:flex-row justify-center gap-6 mt-12 md:px-4 px-0 pb-4"
       >
         {categories.map((category, index) => (
           <motion.div 
             key={category.title}
             variants={cardVariants}
-            className="w-64 flex-shrink-0"
+            className="md:w-64 w-full flex-shrink-0"
           >
             <Card {...category} />
           </motion.div>

@@ -8,7 +8,7 @@ export const FriendLinks = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="flex flex-wrap gap-2 text-sm text-gray-600 dark:text-gray-400"
+      className="flex flex-wrap gap-2 text-sm text-gray-600 dark:text-gray-400 mx-auto"
     >
       <p className="inline-block text-gray-500 font-semibold">友情连接</p>
       {links.map((link, index) => (
