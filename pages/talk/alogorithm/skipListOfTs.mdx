@@ -1,4 +1,17 @@
+import { Image } from 'nextra/components'
+import Link from 'next/link'
+
+# 跳表
+<Link href="https://leetcode.cn/problems/design-skiplist/" className="h2">设计跳表</Link>
++ 粗暴的说 跳表就是一张二维表 这张表用二分的思想把所有的元素的`半`存了起来 方便我们查询
++ 所以相交于传统的n的时间复杂度 降到了logn
++ 但是空间复杂度 也上升了 因为我们需要把所有的元素的`半`存起来
++ 所以跳表的空间复杂度 是nlogn
+<Image src="/imgs/skipList.png" className='w-full'/>
++ 理论上用二维数组也可以编写 但是我门还是采用数组+链表的形式 因为简单
++ 同样 这次使用ts来实现 放弃rust, rust写这个<span className='bold'>不用unsafe得死！</span>
 ```
+//创建node 里面存储一个值 和一个数组保存 半 值
 class TNode {
   val: number
   next: TNode[];
