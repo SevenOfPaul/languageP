@@ -20,10 +20,19 @@ class TNode {
       this. next: TNode[] = new Array<TNode>(level)
   } 
 }
+```
++ 我们需要一个level 来确定当前层级 因为主要是写lc 所以设置为10
++ 实际使用的话 可以使用设计的最大容量来折算 maxLevel=log₂n
++ 同时为了方便处理 我们使用-1作为头结点 
+```
 class Skiplist {
   he: TNode = new TNode(-1)
       level: number = 10
-  find(t: number): Array<TNode> {
+}
+```
++ 下面是各个函数的编写
+```
+ find(t: number): Array<TNode> {
       let cur = this.he
       let ns: TNode[] = new Array<TNode>(this.level)
       for (let i = this.level - 1; i >= 0; i--) {
@@ -56,5 +65,4 @@ class Skiplist {
       }
       return true
   }
-}
 ```
