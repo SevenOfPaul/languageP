@@ -30,7 +30,11 @@ class Skiplist {
       level: number = 10
 }
 ```
-+ 下面是各个函数的编写
+## 函数编写
++ find是整个设计的核心 他的作用是找到t在每一层的位置 方便我们进行增删查
++ 我们从最大的level开始 找到每一层小于t的最大的数 然后把这个数的下一个数存起来
++ 这样我们就找到了t在每一层的位置
++ 然后我们就可以进行增删查了
 ```
  find(t: number): Array<TNode> {
       let cur = this.he
@@ -43,19 +47,31 @@ class Skiplist {
       }
       return ns
   }
+```
++ 这里我们通过find找到t在每一层的位置
++ 之后找到ns中的第一个数 如果这个数不为空 并且这个数的值等于t 那么就返回true
+``` 
   search(t: number): boolean {
      let ns= this.find(t)
       return ns[0].next[0] != null && ns[0].next[0].val == t
   }
+  ```
+  + 这里我们通过find找到t在每一层的位置
+
+  ```
   add(t: number): void {
     let ns= this.find(t)
       const node = new TNode(t,this.level)
       for (let i = 0; i < this.level; i++) {
           node.next[i] = ns[i].next[i]
           ns[i].next[i] = node
+          //这里使用随机数来决定是否向上增长
           if (Math.round(Math.random()) == 0) break
       }
   }
+```
+
+```
   erase(t: number): boolean {
     let ns= this.find(t)
       const node = ns[0].next[0]
@@ -66,3 +82,4 @@ class Skiplist {
       return true
   }
 ```
++ 这里留一个扣子，如果是string或者其他的类型甚至是引用数据类型 我们该如何做处理呢？
