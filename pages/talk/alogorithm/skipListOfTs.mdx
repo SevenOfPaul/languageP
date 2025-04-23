@@ -1,5 +1,24 @@
 import { Image } from 'nextra/components'
 import Link from 'next/link'
+import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import Answer from "../../../components/Answer"
+export const AnsContent = () => {
+  return (
+    <div className="prose dark:prose-invert max-w-none">
+      <p>我们增加一个cmp的函数 来确定顺序即可 同时在find中使用cmp来完成比较：</p>
+     <SyntaxHighlighter language="typescript" style={docco}>
+      {`interface Comparable<T> {
+  compare(other: T): number;  
+}
+function compare(a:{idx:number}, b:{idx:number}) {
+  return a.idx-b.idx
+}`}
+    </SyntaxHighlighter>
+    <p>这样解耦之后就会很简洁</p>
+    </div>
+  )
+}
 
 # 跳表
 <Link href="https://leetcode.cn/problems/design-skiplist/" className="h2">设计跳表</Link>
@@ -10,7 +29,7 @@ import Link from 'next/link'
 <Image src="/imgs/skipList.png" className='w-full'/>
 + 理论上用二维数组也可以编写 但是我门还是采用数组+链表的形式 因为简单
 + 同样 这次使用ts来实现 放弃rust, rust写这个<span className='bold'>不用unsafe得死！</span>
-```
+```ts
 //创建node 里面存储一个值 和一个数组保存 半 值
 class TNode {
   val: number
@@ -24,7 +43,7 @@ class TNode {
 + 我们需要一个level 来确定当前层级 因为主要是写lc 所以设置为10
 + 实际使用的话 可以使用设计的最大容量来折算 maxLevel=log₂n
 + 同时为了方便处理 我们使用-1作为头结点 
-```
+```ts
 class Skiplist {
   he: TNode = new TNode(-1)
       level: number = 10
@@ -35,7 +54,7 @@ class Skiplist {
 + 我们从最大的level开始 找到每一层小于t的最大的数 然后把这个数的下一个数存起来
 + 这样我们就找到了t在每一层的位置
 + 然后我们就可以进行增删查了
-```
+```ts
  find(t: number): Array<TNode> {
       let cur = this.he
       let ns: TNode[] = new Array<TNode>(this.level)
@@ -50,7 +69,7 @@ class Skiplist {
 ```
 + 这里我们通过find找到t在每一层的位置
 + 之后找到ns中的第一个数 如果这个数不为空 并且这个数的值等于t 那么就返回true
-``` 
+```ts
   search(t: number): boolean {
      let ns= this.find(t)
       return ns[0].next[0] != null && ns[0].next[0].val == t
@@ -58,7 +77,7 @@ class Skiplist {
   ```
   + 这里我们通过find找到t在每一层的位置
 
-  ```
+  ```ts
   add(t: number): void {
     let ns= this.find(t)
       const node = new TNode(t,this.level)
@@ -71,7 +90,7 @@ class Skiplist {
   }
 ```
 
-```
+```ts
   erase(t: number): boolean {
     let ns= this.find(t)
       const node = ns[0].next[0]
@@ -83,3 +102,5 @@ class Skiplist {
   }
 ```
 + 这里留一个扣子，如果是string或者其他的类型甚至是引用数据类型 我们该如何做处理呢？
+<Answer title="跳表" content={<AnsContent/>} author="paul" />
++

@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_meta.js", "hooks/generatorWbg.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_meta.js", "hooks/generatorWbg.js", "components/Answer.tsx"],
   "exclude": ["node_modules"]
 }
