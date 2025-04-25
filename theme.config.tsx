@@ -87,8 +87,8 @@ const config: DocsThemeConfig = {
               icon: <Home className="w-4 h-4 text-blue-500" />,
             },
             {
-              name: "文章",
-              path: "/docs",
+              name: "算法",
+              path: "/talk/alogorithm/twoSum",
               icon: <FileText className="w-4 h-4 text-green-500" />,
             },
             {
