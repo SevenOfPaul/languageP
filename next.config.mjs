@@ -6,7 +6,7 @@ const withNextra = nextra({
 })
 
 export default withNextra({
-  swcMinify: true,
+  // swcMinify: true,
   webpack: (config, { isServer }) => {
     config.experiments = {
       ...config.experiments,
