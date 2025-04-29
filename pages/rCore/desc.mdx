@@ -1,0 +1,37 @@
+import Link from 'next/link'
+export const Books=()=>{
+    const books = [{
+        name: "rust圣经", path: "https://course.rs/about-book.html"
+    },{
+        name: "rust宏小册", path:"https://zjp-cn.github.io/tlborm/"
+    },{
+        name: "risc-v特权级切换", path:"https://blog.csdn.net/qq_42556934/article/details/124452742"
+    }]
+    return (
+        <div className="flex flex-col">
+            {books.map((book, idx) => (
+                <div key={idx} className="flex items-center">
+                    <Link className="h3" href={book.path}>{book.name}</Link>
+                </div>
+            ))}
+        </div>
+    )
+}
+
+# rCore简介
++ rCore起源于清华大学计算机系操作系统课探索基于Rust语言的OS实验，并在2018年推出了教学操作系统rCore，并放到了github上。并逐步对外开展编程夏令营。
++ 项目使用rust语言开发了一个类unix架构的教学操作系统，之所以称之为教学操作系统是因为代码设计对于错误处理很少涉及，
+主要是展示各个模块的原理和代码编写。
++ rCore 运行在qemu模拟器上，使用risc-v架构，当然也可以使用k210开发板。笔者因为不称那么多的money使用的是使用的docker来运行qemu。
++ 本文也主要是对学习过程进行梳理，一方面加强自己理解，另一方面也希望能帮助到其他的同学。
++ 笔者使用的是docker来运行qemu，所以本文也不会详细介绍qemu的安装和使用。dockerfile在代码仓库中已经编写完毕，只需要自己build一下即可。
++ 注意如果存在网络问题，那么推荐删去第一行的docker配置。
+```dockerfile
+#删除此行
+# syntax=docker/dockerfile:1
+```
+## 文档地址与代码仓库
+ <Link className="h2 block" href="https://rcore-os.cn/rCore-Tutorial-Book-v3">rCore文档地址</Link>
+ <Link className="h2 block" href="https://github.com/SevenOfPaul/2025s-rcore-SevenOfPaul">本菜鸟的代码仓库</Link>
+## 参考资料
+<Books/>

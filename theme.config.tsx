@@ -68,7 +68,7 @@ const config: DocsThemeConfig = {
           },
           {
             name: "rCore心路",
-            url: "",
+            url: "/rCore/desc",
           },
           {
             name: "杂谈",
