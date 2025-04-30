@@ -4,5 +4,6 @@ export default {
   btRoad:"二叉树路径",
   phoneNumCombine:"电话号码的字母组合",
   climbStair:"爬楼梯",
-  skipListOfTs:"跳表"  
+  skipListOfTs:"跳表",
+  containsD:"存在重复元素"  
 };

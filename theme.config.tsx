@@ -236,7 +236,7 @@ const config: DocsThemeConfig = {
                 使用 Next Rust 和 Tailwind CSS 构建
               </p>
               <p className="mt-2 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
-                最近更新时间: {"2025-04-18"}
+                最近更新时间: {"2025-04-29"}
               </p>
             </div>
           </div>
