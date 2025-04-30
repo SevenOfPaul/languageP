@@ -1,11 +1,11 @@
 import nextra from 'nextra'
-
+import withRspack from "next-rspack";
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.tsx'
 })
 
-export default withNextra({
+export default withRspack(withNextra({
   webpack: (config, { isServer }) => {
     config.experiments = {
       ...config.experiments,
@@ -19,4 +19,4 @@ export default withNextra({
 
     return config;
   },
-});
+}));
