@@ -3,11 +3,12 @@ import { Image } from 'nextra/components'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import styles from "./styles/theme.module.scss"
 import Link from 'next/link'
-import { Home, FileText, Tags, FolderOpen, Book, Github, Mail, MessageCircle, Heart } from 'lucide-react'
+import { Home, FileText, Tags, Book, Github, Mail, MessageCircle, Heart, FileCode } from 'lucide-react'
 import { Hitokoto } from './components/Hitokoto'
 import { motion } from 'framer-motion'
 import { FriendLinks } from './components/FriendLinks'
-
+//@ts-ignore webpack替换
+const time = _time_; 
 const config: DocsThemeConfig = {
 
   head: () => {
@@ -92,9 +93,9 @@ const config: DocsThemeConfig = {
               icon: <FileText className="w-4 h-4 text-green-500" />,
             },
             {
-              name: "分类",
-              path: "/docs/category",
-              icon: <FolderOpen className="w-4 h-4 text-yellow-500" />,
+              name: "react",
+              path: "/web/react/fiber",
+              icon: <FileCode className="w-4 h-4 text-yellow-500" />,
             },
             {
               name: "标签",
@@ -236,7 +237,7 @@ const config: DocsThemeConfig = {
                 使用 Next Rust 和 Tailwind CSS 构建
               </p>
               <p className="mt-2 hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
-                最近更新时间: {"2025-04-29"}
+                最近更新时间: {time}
               </p>
             </div>
           </div>

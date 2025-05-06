@@ -24,4 +24,8 @@ export default {
     title: "杂谈",
     type: "page",
   },
+  web:{
+    title:"前端",
+    type:"page",
+  }
 };
