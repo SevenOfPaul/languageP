@@ -7,23 +7,28 @@ const withNextra = nextra({
   themeConfig: './theme.config.tsx'
 })
 
-export default withRspack(withNextra({
-  webpack: (config, { isServer }) => {
-    config.experiments = {
-      ...config.experiments,
-      asyncWebAssembly: true,
-    };
+export default withRspack(
+  withNextra({
+    experimental: {
+      turbo: {},
+    },
+    webpack: (config, { isServer }) => {
+      config.experiments = {
+        ...config.experiments,
+        asyncWebAssembly: true,
+      };
 
-    config.module.rules.push({
-      test: /\.wasm$/,
-      type: "webassembly/async",
-    });
-    config.plugins = [
-      ...config.plugins,
-      new webpack.DefinePlugin({
-        _time_: JSON.stringify(dayjs().format("YYYY-MM-DD")),
-      }),
-    ];
-    return config;
-  },
-}));
+      config.module.rules.push({
+        test: /\.wasm$/,
+        type: "webassembly/async",
+      });
+      config.plugins = [
+        ...config.plugins,
+        new webpack.DefinePlugin({
+          _time_: JSON.stringify(dayjs().format("YYYY-MM-DD")),
+        }),
+      ];
+      return config;
+    },
+  })
+);
