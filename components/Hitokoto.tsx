@@ -1,12 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import randomHito, { HitokotoData } from '../lib/HitokotoData'
 
-interface HitokotoData {
-  hitokoto: string
-  from: string
-  from_who: string
-}
+
 
 export const Hitokoto = () => {
   const [data, setData] = useState<HitokotoData | null>(null)
@@ -15,11 +12,7 @@ export const Hitokoto = () => {
          let res=await fetch("https://v1.hitokoto.cn/")
         setData(await res.json());
     }catch(e){
-        setData({
-          hitokoto: "能用Rust编写的，终究会使用Rust。",
-          from: "R门",
-          from_who: "Paul",
-        });
+        setData(randomHito());
       console.error(e)
     }
   }
@@ -47,3 +40,4 @@ export const Hitokoto = () => {
     </div>
   );
 }
+

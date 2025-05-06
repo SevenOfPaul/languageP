@@ -1,3 +1,3 @@
 export default{
-    fileLoad:"浏览器读取文件发生了什么？"
+    fileLoad:"input file之后为什么可以展示图片呢？ "
 }
