@@ -6,9 +6,10 @@ import Link from 'next/link'
 import { Home, FileText, Tags, Book, Github, Mail, MessageCircle, Heart, FileCode } from 'lucide-react'
 import { Hitokoto } from './components/Hitokoto'
 import { motion } from 'framer-motion'
+import dayjs from 'dayjs'
 import { FriendLinks } from './components/FriendLinks'
 //@ts-ignore webpack替换
-const time = _time_; 
+const time = dayjs().format("YYYY-MM-DD"); 
 const config: DocsThemeConfig = {
 
   head: () => {
