@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image } from 'nextra/components'
+import Image from 'next/image';
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
 import styles from "./styles/theme.module.scss"
 import Link from 'next/link'
