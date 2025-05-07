@@ -66,7 +66,7 @@ const config: DocsThemeConfig = {
         paths: [
           {
             name: "rust手搓解释器",
-            url: "/docs/p",
+            url: "/complier/docs/code",
           },
           {
             name: "rCore心路",
@@ -115,7 +115,7 @@ const config: DocsThemeConfig = {
               icon: <Book className="w-4 h-4 text-pink-500" />,
             },
             {
-              name: "编译器源码",
+              name: "解释器源码",
               path: "https://github.com/SevenOfPaul/compiler",
               icon: <Github className="w-4 h-4 text-gray-500" />,
             },

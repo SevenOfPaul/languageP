@@ -78,7 +78,7 @@ export default () => {
               href: "weixin://contacts/profile/13136918273",
               icon: <MessageSquareMore className="w-6 h-6" />,
             },
-            { href: "3167385363@qq.com", icon: <Mail className="w-6 h-6" /> },
+            { href: "mailto:3167385363@qq.com", icon: <Mail className="w-6 h-6" /> },
           ].map((social, index) => (
             <motion.a
               key={social.href}

@@ -15,10 +15,10 @@ export default {
       layout: "raw",
     },
   },
-  docs: {
+  complier: {
     title: "文档",
     type: "page",
-    href: "docs/p",
+    href: "complier/docs/p",
   },
   talk: {
     title: "杂谈",
