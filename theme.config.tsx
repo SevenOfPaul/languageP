@@ -19,7 +19,7 @@ const config: DocsThemeConfig = {
   },
   logo:
     <div className={styles.logo}>
-      <Image alt='logo' className='w-8 h-8' src={"/P.png"}></Image>
+      <Image alt='logo' className='w-8 h-8'  width="24" height="24"  src="/P.png"></Image>
       <span>Paul's Blog</span>
     </div>,
   darkMode: true,
@@ -28,7 +28,7 @@ const config: DocsThemeConfig = {
   },
   chat: {
     icon: <div className="tooltip  tooltip-bottom" data-tip="暂未开放">
-      <Image alt='logo' className='w-8 h-8 mt-2' src={"/QQ.png"}></Image>
+      <Image alt='logo' className='w-8 h-8 mt-2' width="24" height="24"  src={"/QQ.png"}></Image>
     </div>,
     link: "https://github.com/SevenOfPaul/compiler"
   },
