@@ -9,7 +9,7 @@ import { motion } from 'framer-motion'
 import dayjs from 'dayjs'
 import { FriendLinks } from './components/FriendLinks'
 //@ts-ignore webpack替换
-const time = dayjs().format("YYYY-MM-DD"); 
+const time = _time_; 
 const config: DocsThemeConfig = {
 
   head: () => {
