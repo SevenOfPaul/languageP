@@ -9,9 +9,9 @@ const withNextra = nextra({
 
 export default withRspack(
   withNextra({
-    experimental: {
-      turbo: {},
-    },
+    // experimental: {
+    //   turbo: {},
+    // },
     webpack: (config, { isServer }) => {
       config.experiments = {
         ...config.experiments,
