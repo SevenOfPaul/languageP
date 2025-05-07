@@ -7,15 +7,51 @@ export const AnsContent = () => {
   return (
     <div className="prose dark:prose-invert max-w-none">
       <p>我们增加一个cmp的函数 来确定顺序即可 同时在find中使用cmp来完成比较：</p>
-     <SyntaxHighlighter language="typescript" style={docco}>
-      {`interface Comparable<T> {
+      <SyntaxHighlighter language="typescript" style={docco}>
+        {`interface Comparable<T> {
   compare(other: T): number;  
 }
 function compare(a:{idx:number}, b:{idx:number}) {
   return a.idx-b.idx
-}`}
-    </SyntaxHighlighter>
-    <p>这样解耦之后就会很简洁</p>
+}
+class TNode {
+  val: number
+  next: TNode[];
+  constructor(_val: number,level:number) {
+      this.val = _val
+      this. next: TNode[] = new Array<TNode>(level)
+  } 
+}
+class Skiplist implments Comparable<TNode>  {
+  he: TNode = new TNode(-1)
+      level: number = 10
+}
+Skiplist.prototype[Symbol.iterator] = function (): IterableIterator<TNode> {
+ return {
+    next(): IteratorResult<TNode> {
+      // 找到下一个节点
+      if (current.next[0]) {
+        let nextNode = current.next[0];
+        // 遍历当前层所有节点，利用 compare 方法找到最小节点
+        let temp = current.next[0];
+        while (temp) {
+          if (skiplist.compare(temp,nextNode) <0>) {
+            nextNode = temp;
+          }
+          temp = temp.next[0];
+        }
+        current = nextNode;
+        return { value: nextNode, done: false };
+      }
+      return { value: undefined, done: true };
+    },
+    [Symbol.iterator]() {
+      return this;
+    }
+}
+`}
+      </SyntaxHighlighter>
+      <p>这样解耦之后就会很简洁</p>
     </div>
   )
 }

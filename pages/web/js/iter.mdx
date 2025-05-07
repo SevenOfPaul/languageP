@@ -1,0 +1,81 @@
+import Link from 'next/link'
+
+# 迭代器和生成器
++ 严格来说，在大多数语言中他俩没啥耦合关系。放在js中处理则是因为js中生成器返回的是一个迭代器。
+## 迭代器
++ 迭代器实际上是一个包含着next函数的对象，他的作用是用来遍历一个集合[^ps1]。
++ 比较器也是迭代器的核心，他的作用是控制迭代器的遍历。
++ 迭代器的next函数返回一个包含着value和done的对象。
++ value是当前迭代器的值，done是一个布尔值，表示是否已经遍历完集合。
++ 迭代器的next函数可以接受一个参数，这个参数是一个比较器。
+```ts
+interface Number {
+  [Symbol.iterator](): IterableIterator<number>;
+}
+// 给 Number 原型添加 Symbol.iterator 方法
+Number.prototype[Symbol.iterator] = function (): IterableIterator<number> {
+  return {
+    max:this,
+    current:0,
+    next(): IteratorResult<number> {
+        //这里是比较器
+      if (this.current < this.max) {
+        return { value: this.current++, done: false };
+      }
+      return { value: undefined, done: true };
+    },
+  } as unknown as IterableIterator<number>;
+};
+
+// 使用示例
+const num = 5;
+for (const value of num) {
+  console.log(value); // 输出 0, 1, 2, 3, 4
+}
+```
++ 我们同样可以为复杂数据进行定义 下面是为一个跳表进行定义
+```ts
+interface Comparable<T> {
+  compare(other: T): number;  
+}
+class TNode {
+  val: number
+  next: TNode[];
+  constructor(_val: number,level:number) {
+      this.val = _val
+      this. next: TNode[] = new Array<TNode>(level)
+  } 
+}
+class Skiplist implements Comparable<TNode>  {
+  he: TNode = new TNode(-1)
+      level: number = 10
+      compare:function(a:{idx:number}, b:{idx:number}) {
+  return a.idx-b.idx
+}
+}
+Skiplist.prototype[Symbol.iterator] = function (): IterableIterator<TNode> {
+ return {
+    next(): IteratorResult<TNode> {
+      // 找到下一个节点
+      if (current.next[0]) {
+        let nextNode = current.next[0];
+        // 遍历当前层所有节点，利用 compare 方法找到最小节点
+        let temp = current.next[0];
+        while (temp) {
+          if (skiplist.compare(temp,nextNode) <0>) {
+            nextNode = temp;
+          }
+          temp = temp.next[0];
+        }
+        current = nextNode;
+        return { value: nextNode, done: false };
+      }
+      return { value: undefined, done: true };
+    },
+    [Symbol.iterator]() {
+      return this;
+    }
+}
+```
+<Link href="https://leetcode.cn/problems/design-skiplist/" className="h2 block">详情请参照跳表</Link>
+[^ps1]:*此处的集合是一个抽象的概念,任何被组织起来的数据包都可以使用迭代器。*
