@@ -1,8 +1,6 @@
 import Link from 'next/link'
 
-# 迭代器和生成器
-+ 严格来说，在大多数语言中他俩没啥耦合关系。放在js中处理则是因为js中生成器返回的是一个迭代器。
-## 迭代器
+# 迭代器
 + 迭代器实际上是一个包含着next函数的对象，他的作用是用来遍历一个集合[^ps1]。
 + 比较器也是迭代器的核心，他的作用是控制迭代器的遍历。
 + 迭代器的next函数返回一个包含着value和done的对象。
@@ -78,4 +76,5 @@ Skiplist.prototype[Symbol.iterator] = function (): IterableIterator<TNode> {
 }
 ```
 <Link href="https://leetcode.cn/problems/design-skiplist/" className="h2 block">详情请参照跳表</Link>
+## 生成器
 [^ps1]:*此处的集合是一个抽象的概念,任何被组织起来的数据包都可以使用迭代器。*

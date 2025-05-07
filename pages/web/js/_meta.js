@@ -1,1 +1,1 @@
-export default { iter: "迭代器与生成器" };
+export default { iter: "迭代器", generator:"生成器" };
