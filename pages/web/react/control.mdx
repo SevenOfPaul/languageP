@@ -1,0 +1,76 @@
+import ChatLeft from "@/components/Chat.tsx";
+
+import { useState,useRef } from "react";
+export function MustMax(){
+    const [name, setName] = useState("");
+  function handleSubmit(e) {
+    console.log(e.target.value);
+     setName(e.target.value.toUpperCase());
+  }
+ return <>
+ <div className='h-12 p-3 w-full bg-slate-600 rounded-lg'>
+ <input value={name} placeholder='强制大写'  onChange={handleSubmit}/>
+</div>
+ </>
+}
+
+# react组件的受控模式与非受控模式
++ 受控于非受控是react组件很基础的概念，但是我在实际工作中发现大家了解的并不是很深入，尤其是是vue转react的小伙伴，往往是setSate一把梭。
+所以就特地来讲讲react组件的受控模式与非受控模式
+## 受控模式
++ 首先我们写个表单提交的代码
+```jsx
+import { useState,useRef } from "react";
+function Form() {
+  const [name, setName] = useState("");
+  function handleSubmit(e) {
+     setName(e.target.value);
+    console.log(e.target.value); 
+  }
+ return <>
+ <input value={name}  onChange={handleSubmit}/>
+ </>
+}
+```
++ vue的小伙伴可能觉得没啥，但是react学的比较不错的朋友可能要骂娘了。
+<ChatLeft title={"为什么呢？"} rightTitle="因为回调中的`setName(e.target.value);`会修改name的值，从而触发组件的重新渲染，从而导致input的值被重置。"/>
+<ChatLeft title={"有什么问题吗？"} rightTitle="当然有，我在下面插入一个输入框，这个输入框不做任何调整。"/>
+<div className='h-12 p-3 w-full bg-slate-600 rounded-lg'>
+<input className='border-gray-800' placeholder='尝试输入'/>
+</div>
++ 你会发现在ui层和受控模式也就是强制`setName(e.target.value);`没有任何区别？
++ 相当于你做了一次无用功，把浏览器做的事情又做了一遍。
+<ChatLeft title={"受控模式就一点用也没有吗？"} rightTitle="当然不是，受控模式的好处在于可以实现表单的校验，比如输入框的长度限制，输入框的类型限制，输入框的必填限制等等。 这也是为社么antd的表单组件是受控模式的原因。"/>
++ 再举个例子，我们需要在输入时强制修改为大写，就可以使用受控模式
+<MustMax/>
+```jsx
+//代码如下
+import { useState,useRef } from "react";
+export function MustMax(){
+    const [name, setName] = useState("");
+  function handleSubmit(e) {
+     setName(e.target.value.toUpperCase());
+  }
+ return <div className='h-12 p-3 w-full bg-slate-600 rounded-lg'>
+ <input value={name} placeholder='强制大写'  onChange={handleSubmit}/>
+</div>
+ </>
+}
+```
+## 非受控模式
++ 聊完了受控模式，我们再来看看非受控模式。
++ 非受控模式就是不使用`value`属性，而是使用`ref`属性。
+```jsx
+import { useState,useRef } from "react";
+function Form() {
+const nameRef=useRef();
+  function handleSubmit(e) {
+     console.log(nameRef.current.value);
+  }
+ return <>
+ <input defaultValue={""}  onChange={handleSubmit} ref={nameRef}/>
+ </>
+}
+```
++ 非受控模式的好处在于我们避免了组件的重新渲染，可以相当程度上提升性能。
++ 但是非受控模式的缺点在于我们无法很优雅的实现表单的校验，比如输入框的长度限制，输入框的类型限制，输入框的必填限制等等。
