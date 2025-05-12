@@ -1,14 +1,12 @@
 import { motion } from 'framer-motion';
 import {
     FaReact,
-    FaTypeScript,
-    FaTailwindCss,
     FaSass,
-    FaWebpack,
-    FaMarkdown,
-    FaFramerMotion
+    FaMarkdown
 } from 'react-icons/fa';
-import { SiNextDotJs } from 'react-icons/si';
+import { RiTailwindCssFill } from "react-icons/ri";
+import { PiEmptyFill } from "react-icons/pi";
+import { SiNextDotJs, SiDaisyui, SiNextra, SiTypescript } from 'react-icons/si';
 
 export const TechIntro = () => {
   const containerVariants = {
@@ -39,29 +37,23 @@ export const TechIntro = () => {
       title: '核心框架',
       items: [
         { icon: FaReact, text: 'React 19' },
-        { icon: SiNextDotJs, text: 'Next.js 15' },
-        { icon: FaTypeScript, text: 'TypeScript 4.9' },
+          { icon: SiNextra, text: 'Nextra' },
+          { icon: SiTypescript, text: 'TypeScript 4.9' },
       ]
     },
     {
-      title: '样式解决方案',
+      title: '样式方案',
       items: [
-        { icon: FaTailwindCss, text: 'Tailwind CSS 3' },
-        { icon: FaTailwindCss, text: 'DaisyUI' },
+          { icon: RiTailwindCssFill, text: 'Tailwind CSS 3' },
+          { icon: SiDaisyui, text: 'DaisyUI' },
         { icon: FaSass, text: 'Sass' },
       ]
     },
     {
-      title: '开发工具',
+      title: '文档支持与动画渲染',
       items: [
-        { icon: FaWebpack, text: 'Webpack 5' },
-      ]
-    },
-    {
-      title: '文档支持',
-      items: [
-        { icon: FaMarkdown, text: 'Nextra' },
-        { icon: FaFramerMotion, text: 'Framer Motion' },
+        { icon: FaMarkdown, text: 'MDX' },
+        { icon: PiEmptyFill, text: 'Framer Motion' }
       ]
     }
   ];
