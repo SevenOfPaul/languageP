@@ -1,6 +1,122 @@
-## 作者简介
-+ 姓名：保密
-+ 年龄：21
-+ 身高：不是很高
-+ 体重：不是很重
-+ 一句话介绍下自己：爱吃爱睡爱敲代码的超级无敌美少女。世界第一甜妹谢谢。
+import { motion } from 'framer-motion';
+import {
+    FaReact,
+    FaTypeScript,
+    FaTailwindCss,
+    FaSass,
+    FaWebpack,
+    FaMarkdown,
+    FaFramerMotion
+} from 'react-icons/fa';
+import { SiNextDotJs } from 'react-icons/si';
+
+export const TechIntro = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  };
+
+  // 定义技术栈数组，将 title 改为中文
+  const techStacks = [
+    {
+      title: '核心框架',
+      items: [
+        { icon: FaReact, text: 'React 19' },
+        { icon: SiNextDotJs, text: 'Next.js 15' },
+        { icon: FaTypeScript, text: 'TypeScript 4.9' },
+      ]
+    },
+    {
+      title: '样式解决方案',
+      items: [
+        { icon: FaTailwindCss, text: 'Tailwind CSS 3' },
+        { icon: FaTailwindCss, text: 'DaisyUI' },
+        { icon: FaSass, text: 'Sass' },
+      ]
+    },
+    {
+      title: '开发工具',
+      items: [
+        { icon: FaWebpack, text: 'Webpack 5' },
+      ]
+    },
+    {
+      title: '文档支持',
+      items: [
+        { icon: FaMarkdown, text: 'Nextra' },
+        { icon: FaFramerMotion, text: 'Framer Motion' },
+      ]
+    }
+  ];
+
+  return (
+    <div className="max-w-4xl mx-auto p-6">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.section variants={itemVariants} className="mb-12">
+          <h3 className="text-2xl font-semibold mb-4">前端技术</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {techStacks.map((category, index) => (
+              <motion.div 
+                key={index}
+                variants={itemVariants}
+                className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+              >
+                <h4 className="font-medium mb-2">{category.title}</h4>
+                <ul className="space-y-1">
+                  {category.items.map((item, itemIndex) => (
+                    <motion.li 
+                      key={itemIndex}
+                      variants={itemVariants}
+                      className="flex items-center space-x-2 py-1"
+                    >
+                      <span className="w-5 h-5 flex-shrink-0 text-gray-600 dark:text-gray-400">
+                        {item.icon && <item.icon size={20} />}
+                      </span>
+                      <span>{item.text}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        <motion.section variants={itemVariants} className="mb-12">
+          <h3 className="text-2xl font-semibold mb-4">解释器技术栈</h3>
+          <motion.div 
+            variants={itemVariants}
+            className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+          >
+            <p className="text-gray-600 dark:text-gray-400">🚧 正在建设中...</p>
+          </motion.div>
+        </motion.section>
+      </motion.div> 
+    </div>
+  );
+};
+
+# Blog 简介
+<TechIntro />
+
+# 作者简介

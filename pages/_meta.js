@@ -20,12 +20,12 @@ export default {
     type: "page",
     href: "complier/docs/p",
   },
-  talk: {
-    title: "杂谈",
-    type: "page",
-  },
   web:{
     title:"前端",
     type:"page",
+  },
+  talk: {
+    title: "杂谈",
+    type: "page",
   }
 };
