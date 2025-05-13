@@ -33,5 +33,57 @@ void multiple(int *a, int b) {
 }
 ```
 + 可能这里有点不太好理解。那我们联系下实际，`setSate`是个什么样的函数呢？
++ 同时提个问，为什么lambda表达式是不可变的思想呢？
 <Answer title="为什么要有不可变" content={<AnsContent/>} author="paul" />
 ## 函数式的核心是函数的组合
+### 臭名昭著的链式调用
++ 令人诟病？的rust链式调用
+```rust
+    let result = (0..20)                         // 生成范围 0..19
+        .filter(|x| x % 3 != 0)                  // 过滤3的倍数
+        .map(|x| x * 2)                          // 翻倍
+        .filter_map(|x| if x > 10 { Some(x) } else { None }) // 过滤<=10的数
+        .enumerate()                             // 添加索引
+        .map(|(i, x)| (i as i32 + x, x % 5))     // 元组映射：(索引+x, x%5)
+        .filter(|(sum, mod5)| sum % 2 == 0 && *mod5 != 0) // 过滤条件
+        .flat_map(|(sum, mod5)| vec![sum, mod5, sum * mod5]) // 展开为向量
+        .collect::<Vec<_>>()                     // 收集到Vec
+        .windows(2)                              // 滑动窗口
+        .map(|pair| pair[0] * pair[1])           // 相邻元素相乘
+        .chain([42, 99].into_iter())             // 连接额外元素
+        .skip(2)                                 // 跳过前两个元素
+        .take(5)                                 // 取前5个元素
+        .fold(1, |acc, x| acc * x); 
+```
+### 地狱般的嵌套调用
++ 著名的`回调地狱`
+```js
+simulateAjaxRequest('https://example.com/api1', (ajaxData1) => {
+  processData(ajaxData1, (processedData1) => {
+    simulateAjaxRequest('https://example.com/api2', (ajaxData2) => {
+      processData(ajaxData2, (processedData2) => {
+        validateData(processedData2, (validData2) => {
+          if (validData2) {
+            simulateAjaxRequest('https://example.com/api3', (ajaxData3) => {
+              processData(ajaxData3, (processedData3) => {
+                validateData(processedData3, (validData3) => {
+                  if (validData3) {
+                    console.log('所有操作完成，最终数据:', validData3);
+                  } else {
+                    console.log('最终数据验证失败');
+                  }
+                });
+              });
+            });
+          } else {
+            console.log('数据处理或验证失败，操作中断');
+          }
+        });
+      });
+    });
+  });
+});
+```
++ 虽然上面这些代码对我们的可读性造成了很大的负担，但是也可以从中瞥见函数式编程的强大能力。力扣中的一行代码解决问题也无一不是函数式编程的体现。
++ 但是毕竟函数式编程上手难度还是比较高的，谨慎使用[^ps1]。
+[^ps1]:小tips,思考函数定义时，优先确定返回值，其次确定输入值。可以有效帮助我们定义函数。
