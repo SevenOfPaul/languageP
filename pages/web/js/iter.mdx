@@ -4,6 +4,15 @@ import Link from 'next/link'
 + 迭代器实际上是一个包含着next函数的对象，他的作用是用来遍历一个集合[^ps1]。
 + 比较器也是迭代器的核心，他的作用是控制迭代器的遍历。
 + 迭代器的next函数返回一个包含着value和done的对象。
+```ts
+function iter(){
+  return {
+    next(){
+      return {value:1,done:false}
+    } 
+  }
+}
+```
 + value是当前迭代器的值，done是一个布尔值，表示是否已经遍历完集合。
 + 迭代器的next函数可以接受一个参数，这个参数是一个比较器。
 ```ts
@@ -80,5 +89,5 @@ Skiplist.prototype[Symbol.iterator] = function (): IterableIterator<TNode> {
 + 实际上是可以的，但是如果有很多对象需要添加迭代呢
 + 我们是不是要抽离出一个公共接口去达到通用化？
 + 那这是什么呢？ 这不就是你自定义定义了一个`迭代器`吗？
-<Link href="https://leetcode.cn/problems/design-skiplist/" className="h2 block">详情请参照跳表</Link>
+<Link href="/talk/alogorithm/skipListOfTs" className="h2 block">详情请参照跳表</Link>
 [^ps1]:*此处的集合是一个抽象的概念,任何被组织起来的数据包都可以使用迭代器。*
