@@ -230,7 +230,7 @@ async function __wbg_init(module_or_path) {
     }
 
     if (typeof module_or_path === 'undefined') {
-        module_or_path = '/wasm/p_bg.wasm
+        module_or_path = '/wasm/p_bg.wasm';
     }
     const imports = __wbg_get_imports();
 
