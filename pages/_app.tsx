@@ -10,6 +10,7 @@ export default function App({ Component, pageProps }) {
           children={
             <>
               <title>Paul's Blog</title>
+              <meta name="baidu-site-verification" content="codeva-UOeGseNARG" />
             </>
           }
         ></Head>
