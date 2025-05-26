@@ -1,0 +1,75 @@
+import Chat from "@/components/Chat"
+export const AnsContent = () => {
+  return (
+    <div className="prose dark:prose-invert max-w-none">
+      <p>我们增加一个cmp的函数 来确定顺序即可 同时在find中使用cmp来完成比较：</p>
+      <SyntaxHighlighter language="typescript" style={docco}>
+        {`其实是不会的，二者虽然都是catch子组件throw出来的数据，但是二者关系不大。一个捕获 error，一个捕获 promise。首先会全部 catch，然后内部再区分两种情况：如果 throw 的是 error，就是 error boundary 的处理逻辑，找最近的一个 ErrorBoundary 组件来处理。
+如果 throw 的是 promise，则是 suspense boundary 的处理逻辑，找最近的 Suspense 组件来处理。
+两者互不相干。`}
+      </SyntaxHighlighter>
+      <p>这样解耦之后就会很简洁</p>
+    </div>
+  )
+}
+
+# 聊聊Suspence组件
++ 在react中Suspense 组件是和 React.lazy 结合用，用来加载一些异步组件。
+## 使用
+```tsx
+import React, { Suspense } from 'react';
+
+const LazyComp = React.lazy(() => import('./comp'));
+
+export default function App() {
+  return <div>
+    <Suspense fallback={'loading...'}>
+      <LazyComp/>
+    </Suspense>
+  </div>
+}
+```
++ fallback 参数指定在过程中显示的内容，加载完成后，显示懒加载的组件内容。
+因为不可能一下子把所有路由的组件都下载下来，所以会用 lazy + Suspense 的方式异步加载暂时用不到的路由对应的组件。大多数场景下，Suspense 就专门和 lazy 搭配使用的。但有的时候，你会发现 Suspense 不搭配 lazy 也可以。
+<Chat leftTitle="你在开玩笑吗？" rightTitle="当然不是，但是再聊这个之前，我们先看另一个东西！" />
+## ErrorBoundary
++ ErrorBoundary大家可能不是很熟悉，因为这是个只有在class组件才具有的api。
++ 当子组件报错的时候，会把错误传递给它的 getDerivedStateFromError 和 componentDidCatch 方法。用 ErrorBoundary 组件包裹子组件可以捕获子组件抛出的错误，显示对应的 UI。
++ 这样，就对组件抛错的情况做了兜底。
+<Chat leftTitle="这俩有啥关系？为什么要扯到 ErrorBoundary 呢？" rightTitle="这就要聊到二者的原理了"/>
+## 原理
++ 二者是用 throw error 的方式实现的。
+```tsx
+import { Suspense } from "react";
+
+let data, promise;
+function fetchData() {
+  if (data) return data;
+  promise = new Promise(resolve => {
+    setTimeout(() => {
+      data = 'data'
+      resolve()
+    }, 2000)
+  })
+  throw promise;
+}
+
+function Content() {
+  const data = fetchData();
+  return <p>{data}</p>
+}
+
+export default function App() {
+  return (
+    <Suspense fallback={'loading data'}>
+      <Content />
+    </Suspense>
+  )
+}
+```
++ 也就是说，只要 throw 一个 promise，就会被最近的 Suspense 捕获。
++ promise 初始状态展示 fallback，promise 改变状态后展示子组件。
++ React.lazy 包裹之后，也会 throw 一个 promise 来触发 Suspense。
++ 当 promise 改变状态后，再返回拿到的值。
+<Chat title="提问？ 二者都是通过catch 那会冲突吗？"/>
+<Answer title="suspence" content={<AnsContent/>} author="paul" />
