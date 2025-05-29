@@ -1,7 +1,17 @@
 import ChatLeft from "@/components/Chat.tsx";
+import Image from 'next/image';
 
 # 聊聊react中的fiber
 + 首先下个结论 fiber是更高级的vdom,包含了更丰富的信息以供中断和恢复。
-<ChatLeft title="以前也不是没有vdom，非弄出个fiber干啥？"/>
-## 为什么要有fiber？
+<ChatLeft title="以前也不是没有vdom，非弄出个fiber干啥？" rightTitle="先聊聊vdom吧，聊完你就知道了！"/>
+## 先聊聊vdom
++ vdom 其实就是对真实dom的抽象，是一颗仿照dom建设的tree。
++ 如下图
+<Image src="/imgs/vdom.png" alt="vdom" width={800} height={400} />
++ 熟悉二叉树遍历的同学都知道 二叉树遍历用递归是非常方便的，但是递归有个问题，就是无法中断和恢复。
++ 这样的话，如果有ui有巨大的变化的同时，用户又做了操作，那么不但ui渲染会卡顿，并且还可能导致用户操作丢失。
+<ChatLeft title="所以fiber就是为了解决这个问题？" rightTitle={`是的，fiber的改进就是保存节点信息方便中断与恢复，同时在原有tree的基础上增加了兄弟节点的信息,降低遍历的心智负担。`}/>
+## fiber究竟什么样？
++ 先来张图展示一下
+<Image src="/imgs/fiber.png" alt="vdom" width={800} height={400} />
 
