@@ -16,7 +16,8 @@ export const Card = ({ title, description, imageUrl, link }: CardProps) => {
         scale: 1.02,
         transition: { duration: 0.2 }
       }}
-      className="bg-white dark:bg-neutral-900 rounded-xl overflow-hidden shadow-lg"
+      className="bg-white dark:bg-neutral-900 rounded-xl 
+      overflow-hidden shadow-lg group"
     >
       <Link href={link}>
         <div className="relative h-48 w-full overflow-hidden">
@@ -24,9 +25,10 @@ export const Card = ({ title, description, imageUrl, link }: CardProps) => {
             src={imageUrl}
             alt={title}
             fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
-            priority  // 添加这行
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 添加这行
+            className="object-cover transition-all duration-300 
+             group-hover:blur-sm"
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
 
