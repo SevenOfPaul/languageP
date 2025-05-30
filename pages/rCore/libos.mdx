@@ -1,1 +1,24 @@
-# libOS 与上古操作系统
+import { Image } from 'nextra/components'
+import Link from 'next/link';
+import ChatLeft from "@/components/Chat.tsx";
+
+# libOS与上古操作系统
+## LibOS与dos
++ libOS并不是某一款具体的操作系统，而是一种设计理念。他把所有的操作系统的syscall[^ps1]都放在用户态，作为一个lib库供app随意调用。
++ 代表作就是dos,熟悉的dos的同学都知道，这款操作系统很不稳定。即使是app的错误也会导致系统重启。
++ 就像pages引用lib中的函数这样，dos中的app也会引用`lib`中的syscall。
+<Image src="/imgs/lib.png" className='w-full'/>
++ 虽然dos是一款经典的操作系统，但是他的设计理念却并不先进，至少在当时，就有相当多的理念，奠定了现代操作系统的基础。
++ 例如 用户态 内核态 的划分，内核态代码和用户态代码的隔离，系统调用的概念等。
+<ChatLeft title="说到这就不得不聊聊上古操作系统了是吧" rightTitle="真聪明！"/>
+## 上古操作系统
++ 上古操作系统可以追溯到上世纪四五十年代，甚至严格那东西就不是个操作系统，更像是个辅助操作人员工作的电子工具。
+<ChatLeft title="长这样"/>
+<Image src="/imgs/EDSAC.png" className='w-full'/>
++ 虽然这个东西很不好用，但是相较于之前只有计算功能，一切的切换都要手动操作的计算机，这个东西已经算是很先进了。
++ 这也是最早的有记录的操作系统了。
++ 在之前的计算机就完全是个遵照<Link className="title" href="/talk/architecture">冯诺依曼架构</Link>的计算工具了。
++ 而现在这款操作系统最大的问题是，app必须手动装填和切换。
+<ChatLeft title="让他自己切换不行吗？" rightTitle="of course，当时的人们也是这么想的！"/>
+<p className="h3">恭喜进入操作系统的泥盆纪，BatchOS,不过这就是下一章的内容了。</p>
+[^ps1]:syscall是指操作系统提供的系统调用接口，通常用于用户程序与内核之间的交互。如果操作系统没有内核态呢？那就直接去调用硬件态的代码了。
