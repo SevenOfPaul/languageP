@@ -73,7 +73,7 @@ const config: DocsThemeConfig = {
           },
           {
             name: "杂谈",
-            url: "./talk/architecture",
+            url: "/talk/architecture",
           },
         ],
       };
