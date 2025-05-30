@@ -1,0 +1,96 @@
+import {Image} from 'nextra/components';
+import ChatLeft from "@/components/Chat";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import Answer from "@/components/Answer"
+import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
+export const AnsContent = () => {
+    return (
+        <div className="prose dark:prose-invert max-w-none">
+            <SyntaxHighlighter language="typescript" style={docco}>
+                {`懒计算 流操作 状态机`}
+            </SyntaxHighlighter>
+        </div>
+    )
+}
+
+
+# 生成器
++ 生成器大家用的都比较少呀！
+```ts
+//以下就是一个返回0-9迭代器的生成器函数
+function* gen() {
+  for (let i = 0; i < 10; i++) {
+    yield i;
+  }
+}
+for (const value of gen()) {
+  console.log(value);
+}
+```
++ 运行一下试试
+<Image src="/imgs/gen.png" className='w-full'/>
+```ts
+//以下就是一个返回0-9迭代器的生成器函数
+function* gen() {
+  for (let i = 0; i < 10; i++) {
+    yield i;
+  }
+}
+// 再看看返回的是个啥
+console.log(gen().next()); //函数结果是个迭代器 需要next才有值
+```
+<Image src="/imgs/gen2.png" className='w-full'/>
+## 有啥用？
++ 重点其实在yield关键字上 这里是可以暂停函数执行的
++ 所以我们可以异步转同步
+```ts
+function* gen() {
+  try {
+    const res1 =  fetch("https://example.com");
+    const data1 = yield res1.json();
+    const res2 =  fetch("https://example.com/2");
+    const data2 = yield res2.json();
+  } catch (error) {
+    console.error("Generator error:", error);
+    throw error;
+  }
+}
+```
++ 通过上述代码可以做到用同步的方式来处理异步请求
+```ts
+function runGenerator(genFn) {
+  const gen = genFn();
+  
+  function iterate(iteration) {
+    if (iteration.done) return iteration.value;
+    
+    const promise = iteration.value;
+    promise.then(
+      value => iterate(gen.next(value)),
+      error => iterate(gen.throw(error))
+    );
+  }
+  
+  // 启动迭代
+  iterate(gen.next());
+}
+
+// 调用执行器
+runGenerator(gen);
+```
+<ChatLeft title="你这也太麻烦了吧！" rightTitle="是的，所以现在大家都包上一层语法糖用。"/>
+```ts
+async function asyncFunction() {
+  try {
+    const res1 = await fetch("https://example.com");
+    const data1 = await res1.json();
+    const res2 = await fetch("https://example.com/2");
+    const data2 = await res2.json();
+  } catch (error) {
+    console.error("Async error:", error);
+    throw error;
+  }
+}
+```
++ 留个扣子提问 生成器还能干嘛？
+<Answer title="生成器" content={<AnsContent/>} author="paul" />

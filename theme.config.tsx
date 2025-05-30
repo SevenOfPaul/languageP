@@ -144,8 +144,8 @@ const config: DocsThemeConfig = {
       ];
       return (
         <>
-          <div className="h-[1px] w-full bg-[#2926260d]"></div>
-          <div className="w-full bg-gradient-to-b from-slate-50 to-slate-100 dark:from-neutral-900 dark:to-neutral-950 pt-16 pb-8 px-6 relative">
+          <div className="h-[1px] w-full bg-[#2926260d] dark:bg-[#1e1e1e08]"></div>
+          <div className="w-full dark:bg-[#2b2a2a08] from-slate-50  to-slate-100 dark:from-neutral-900 dark:to-neutral-950 pt-16 pb-8 px-6 relative">
             <Hitokoto />
             <div className="max-w-6xl mx-auto flex flex-row justify-between flex-wrap gap-20">
               <motion.div
@@ -248,4 +248,3 @@ const config: DocsThemeConfig = {
 }
 
 export default config
-
