@@ -1,3 +1,5 @@
+
+import initMessage from "@/lib/injectAi";
 export default async function sendMessage(
   lastContent: { role: string; content: string }[],
   content: string,
@@ -14,7 +16,17 @@ export default async function sendMessage(
       },
       body: JSON.stringify({
         model: "deepseek/deepseek-chat-v3-0324:free",
-        messages: [...lastContent, { role: "user", content }],
+        messages: [
+          initMessage,
+          ...lastContent.map((k) => {
+            if (k.role == "user") {
+              return { role: "user", content: "user:" + k.content };
+            } else {
+              return k;
+            }
+          }),
+          { role: "user", content: "user:" + content },
+        ],
         stream: true,
       }),
     }

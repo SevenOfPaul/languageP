@@ -61,9 +61,27 @@ export function Bot({setShowAi}){
     });
     const scrollRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
+        console.log(
+          "messages changed",
+          messages,
+          scrollRef,scrollRef.current
+        );
       if (scrollRef.current) {
         // 将滚动位置设置到最底部
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        console.log("scroll to bottom", scrollRef.current.scrollTop);
+      }
+      if (messages.length==0) {
+        sendMessage(
+          [],
+          "你好呀",
+          (content) => {
+            setMessage([
+              { role: "assistant", content: content },
+            ]);
+          },
+          () => {}
+        ); 
       }
     }, [messages]);
 
@@ -94,7 +112,7 @@ export function Bot({setShowAi}){
             <h2 className='text-center text-xl font-bold mb-4'>鹏语言AI智能助手</h2>
         </div>
         {/**这里保存message */}
-        <div className="overflow-y-auto overflow-x-hidden h-[70vh]">
+        <div className="overflow-y-auto overflow-x-hidden h-[70vh]" ref={scrollRef}>
           {messages.map((message, index) => (
             <Message key={index} message={message} />
           ))}

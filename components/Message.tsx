@@ -25,10 +25,12 @@ export default function Message({
 }: {
   message: { role: string; content: string };
 }) {
+
   return (
     <>
-      <motion.div
-        className={`chat ${
+      <motion.div 
+       // 添加右键菜单复制功能
+        className={`chat  ${
           message.role === "user" ? "chat-end" : "chat-start"
         }`}
         variants={chatVariants} // 使用动画变体
