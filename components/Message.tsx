@@ -35,7 +35,11 @@ export default function Message({
         initial="hidden" // 初始状态
         animate="show" // 动画显示状态
       >
-        <motion.div className="chat-bubble chat-bubble-accent">
+        <motion.div
+          className="chat-bubble text-[#252424]  bg-gradient-to-r from-pink-400 to-violet-400
+           hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden 
+           shadow-md rounded-lg p-3"
+        >
           <Markdown>{message.content}</Markdown>
         </motion.div>
       </motion.div>
