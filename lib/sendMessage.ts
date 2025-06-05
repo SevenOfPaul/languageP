@@ -13,7 +13,7 @@ export default async function sendMessage(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "deepseek/deepseek-r1-0528:free",
+        model: "deepseek/deepseek-chat-v3-0324:free",
         messages: [...lastContent, { role: "user", content }],
         stream: true,
       }),
