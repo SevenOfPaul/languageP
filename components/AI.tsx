@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import { Trash, X } from 'lucide-react';
 import { useEffect, useState,useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocalStorageState } from 'ahooks';
@@ -61,11 +61,6 @@ export function Bot({setShowAi}){
     });
     const scrollRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-        console.log(
-          "messages changed",
-          messages,
-          scrollRef,scrollRef.current
-        );
       if (scrollRef.current) {
         // 将滚动位置设置到最底部
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -100,25 +95,54 @@ export function Bot({setShowAi}){
           () => {}
         );
       }
-    return  <motion.div 
-        className='bg-white w-full h-full rounded-lg shadow-lg relative' 
+    return (
+      <motion.div
+        className="bg-white w-full h-full rounded-lg shadow-lg relative"
         variants={cardVariants}
         initial="hidden" // 初始状态
         animate="show" // 显示状态
         exit="exit" // 退出状态
-    >
-        <X className='h-6 w-6 top-5 left-5 absolute cursor-pointer hover:scale-125' onClick={()=>setShowAi(false)}/>
-        <div className='p-4 mx-auto'>
-            <h2 className='text-center text-xl font-bold mb-4'>鹏语言AI智能助手</h2>
+      >
+        <div className="top-5 left-5 absolute cursor-pointer flex gap-2">
+        <div
+            className="tooltip  tooltip-bottom"
+            data-tip="关闭助手"
+          >
+          <X
+            className="h-6 w-6  hover:scale-125"
+            onClick={() => setShowAi(false)}
+          />
+          </div>
+          <div
+            className="tooltip  tooltip-bottom"
+            data-tip="清理聊天记录"
+          >
+            <Trash
+              className="h-6 w-6  hover:scale-125"
+              onClick={() => setMessage([])}
+            />
+          </div>
+        </div>
+        <div className="p-4 mx-auto">
+          <h2 className="text-center text-xl font-bold mb-4">
+            鹏语言AI智能助手
+          </h2>
         </div>
         {/**这里保存message */}
-        <div className="overflow-y-auto overflow-x-hidden h-[70vh]" ref={scrollRef}>
+        <div
+          className="overflow-y-auto overflow-x-hidden h-[70vh]"
+          ref={scrollRef}
+        >
           {messages.map((message, index) => (
             <Message key={index} message={message} />
           ))}
         </div>
-        <Input className="mx-1 fixed bottom-16 w-[99%] h-20 p-2 border rounded-lg border-slate-500" getInput={getInput}/>
-    </motion.div>
+        <Input
+          className="mx-1 fixed bottom-16 w-[99%] h-20 p-2 border rounded-lg border-slate-500"
+          getInput={getInput}
+        />
+      </motion.div>
+    );
 }
 
 export default  function AI({setShowAi}) {

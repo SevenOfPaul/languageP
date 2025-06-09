@@ -21,7 +21,7 @@ export const Wasm = () => {
 
   const [val, setVal] = useState("print \"hello world!\";");
   const [res, setRes] = useState([]);
-  const [showAi,setShowAi]=useState(true);
+  const [showAi,setShowAi]=useState(false);
   function runCode() {
     setRes([]);
     run_program(val);
