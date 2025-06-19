@@ -5,5 +5,6 @@ export default {
   phoneNumCombine:"电话号码的字母组合",
   climbStair:"爬楼梯",
   skipListOfTs:"跳表",
-  containsD:"存在重复元素"  
+  containsD:"存在重复元素",
+  backtracking:"回溯"  
 };

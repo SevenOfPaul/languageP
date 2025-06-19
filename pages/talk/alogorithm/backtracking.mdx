@@ -1,0 +1,60 @@
+import { Image } from 'nextra/components'
+import Link from 'next/link'
+
+# 回溯
+## 子集
++ 个人观点，回溯就是用深度优先搜素哦的形式去穷举出所有可能性,例如<Link href="https://leetcode.cn/problems/subsets/description/" className="h2">子集</Link>。
+<Image src="/imgs/child1.png" className='w-full'/>
++ 我们可以用树状的形式把可能性人工列出来 如下图
+<Image src="/imgs/child2.png" className='w-full'/>
+```rust
+//直接套用二叉树的逻辑
+impl Solution {
+    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut ans=vec![];
+        let mut path=vec![];
+        fn dfs(ans:&mut Vec<Vec<i32>>,path:&mut Vec<i32>,i:usize,n:usize,nums:&Vec<i32>){
+           if i==n{
+               ans.push(path.clone());
+               return;
+           }else{
+               path.push(nums[i]);
+               dfs(ans, path, i+1, n, nums);
+           }
+        }
+        dfs(&mut ans, &mut path, 0, nums.len(), &nums);
+        ans
+    }
+}
+```
++ 我们发现结果不对，答案是输入套了一层数组的壳就没了。
++ 这时候我们就需要引入回溯的思想了。
++ 已知我们的答案是`ans`是全局共享，那我们就可以通过对`ans`进行操作来记录下每次循环ans的结果。
++ 这就需要我们保存上一次的状态来开启下一次的函数，则跳跃了本次。
+```rust
+//直接套用二叉树的逻辑
+impl Solution {
+    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut ans=vec![];
+        let mut path=vec![];
+        fn dfs(ans:&mut Vec<Vec<i32>>,path:&mut Vec<i32>,i:usize,n:usize,nums:&Vec<i32>){
+           if i==n{
+               ans.push(path.clone());
+               return;
+           }else{
+               path.push(nums[i]);
+               dfs(ans, path, i+1, n, nums);
+               path.pop();
+                dfs(ans, path, i+1, n, nums);
+           }
+        }
+        dfs(&mut ans, &mut path, 0, nums.len(), &nums);
+        ans
+    }
+}
+```
+<Image src="/imgs/child3.png" className='w-full'/>
+## 进阶问题
++ <Link href="https://leetcode.cn/problems/subsets-ii/" className="h2">子集2</Link>
+<Image src="/imgs/child4.png" className='w-full'/>
++ ~~使用set去个重就好了~~
