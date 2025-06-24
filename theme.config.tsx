@@ -61,11 +61,11 @@ const config: DocsThemeConfig = {
             
       const LeftData = {
         name: "For Paul",
-        desc: "这是一个个人博客，主要用于记录自己的学习过程，用于ts和rust的技术交流",
+        desc: "这是一个个人博客，主要用于记录自己的学习过程，用于技术交流",
         paths: [
           {
             name: "rust手搓解释器",
-            url: "/complier/docs/code",
+            url: "/complier/docs/p",
           },
           {
             name: "rCore心路",

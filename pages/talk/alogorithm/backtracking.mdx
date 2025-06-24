@@ -58,3 +58,27 @@ impl Solution {
 + <Link href="https://leetcode.cn/problems/subsets-ii/" className="h2">子集2</Link>
 <Image src="/imgs/child4.png" className='w-full'/>
 + ~~使用set去个重就好了~~
+```rust
+// 处理重复元素，需要先排序
+impl Solution {
+    pub fn subsets_with_dup(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+        nums.sort_unstable(); // 排序以便处理重复元素
+        let mut ans = vec![];
+        let mut path = vec![];
+        fn dfs(ans: &mut Vec<Vec<i32>>, path: &mut Vec<i32>, i: usize, nums: &Vec<i32>) {
+            ans.push(path.clone());
+            for j in i..nums.len() {
+                // 剪枝：跳过重复元素
+                if j > i && nums[j] == nums[j-1] {
+                    continue;
+                }
+                path.push(nums[j]);
+                dfs(ans, path, j + 1, nums);
+                path.pop();
+            }
+        }
+        dfs(&mut ans, &mut path, 0, &nums);
+        ans
+    }
+}
+```

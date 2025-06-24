@@ -63,8 +63,7 @@ export default () => {
           variants={item}
           className="mt-2 text-gray-600 dark:text-gray-400 max-w-md"
         >
-          热爱探索新技术，专注于 TypeScript 和 Rust
-          开发。致力于构建优雅的解决方案。
+          要不咱搞个图床？cloudflare怎么样？能白嫖！！！白嫖也不要？年轻人比老登有钱多了呀！
         </motion.p>
 
         <motion.div variants={item} className="flex space-x-4 mt-6">
