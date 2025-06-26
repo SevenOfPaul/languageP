@@ -19,6 +19,6 @@
     },
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_meta.js", "hooks/generatorWbg.js", "components/Answer.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_meta.js", "hooks/generatorWbg.js", "components/Answer.tsx", "pages/web/game.mdx"],
   "exclude": ["node_modules"]
 }

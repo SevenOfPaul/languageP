@@ -6,6 +6,7 @@ import { useLocalStorageState } from 'ahooks';
 import { Input } from './Input';
 import Message from './Message';
 import sendMessage from "@/lib/sendMessage";
+import initMessage from "@/lib/injectAi";
 type Message={
  role:"user"|"assistant",
  content:string,
@@ -64,10 +65,9 @@ export function Bot({setShowAi}){
       if (scrollRef.current) {
         // 将滚动位置设置到最底部
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-        console.log("scroll to bottom", scrollRef.current.scrollTop);
       }
       if (messages.length==0) {
-        sendMessage(
+        sendMessage(initMessage,
           [],
           "你好呀",
           (content) => {
@@ -83,7 +83,7 @@ export function Bot({setShowAi}){
       function getInput(val:string){
         const newMessages = [...messages, { role: "user", content: val }] as Message[];
         setMessage(newMessages);
-        sendMessage(
+        sendMessage(initMessage,
           newMessages,
           val,
           (content) => {
