@@ -1,5 +1,4 @@
 import nextra from 'nextra'
-import withRspack from "next-rspack";
 import  webpack  from 'webpack'
 import dayjs from 'dayjs'
 const withNextra = nextra({
@@ -7,11 +6,15 @@ const withNextra = nextra({
   themeConfig: './theme.config.tsx'
 })
 
-export default withRspack(
+export default 
   withNextra({
-    // experimental: {
-    //   turbo: {},
-    // },
+    experimental: {
+      turbo: {
+        loaders: {
+          '.wasm': 'webassembly/async'
+        }
+      },
+    },
     webpack: (config, { isServer }) => {
       config.experiments = {
         ...config.experiments,
@@ -30,5 +33,4 @@ export default withRspack(
       ];
       return config;
     },
-  })
-);
+  });
